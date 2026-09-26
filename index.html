@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mind Cars</title>
-<meta name="theme-color" content="#2F43F5">
+<meta name="theme-color" content="#0F1E2E">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -113,6 +113,8 @@ h2.sec button{border:0;background:none;color:var(--accent);font:500 14px var(--b
 .list{display:flex;flex-direction:column;gap:10px}
 .entry{display:block;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px 16px}
 .e-top{display:flex;justify-content:space-between;gap:12px}
+.e-top>div:first-child{min-width:0}
+.e-right{flex:none}
 .e-date{font-size:13.5px;color:var(--ink2)}
 .e-amt{font:600 21px/1.2 var(--num)}
 .e-right{text-align:right}
@@ -229,8 +231,8 @@ h2.sec button{border:0;background:none;color:var(--accent);font:500 14px var(--b
 .e-from{font-size:12.5px;color:var(--ink3);margin-top:4px}
 .chips.sub .chip{padding:6px 12px;font-size:13px}
 .login{max-width:420px;padding-top:9vh}
-.brandmark{width:64px;height:64px;border-radius:20px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;margin:0 auto 14px}
-.brandmark svg{width:34px;height:34px}
+.brandmark{width:76px;height:76px;margin:0 auto 14px;border-radius:22px;box-shadow:0 0 0 1px var(--line),0 10px 24px -10px rgba(15,30,46,.5)}
+.brandmark svg{width:76px;height:76px;display:block}
 .lt{font:700 32px var(--num);text-align:center;margin:0}
 .ls{text-align:center;color:var(--ink2);margin:4px 0 22px}
 .linkbtn{border:0;background:none;color:var(--accent);font:500 15px var(--body);padding:8px}
@@ -287,6 +289,20 @@ h2.sec button{border:0;background:none;color:var(--accent);font:500 14px var(--b
 .cap2{align-items:center;gap:10px}
 .cap2>div{min-width:0;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
 .unitbtn{border:0;background:none;padding:0;font:500 12.5px var(--num);color:var(--accent)}
+.who{display:inline-flex;align-items:center;gap:4px;color:var(--ink2);font-size:13px;white-space:nowrap;background:var(--surface2);border-radius:999px;padding:2px 9px 2px 7px}
+svg.i.xs{width:13px;height:13px;vertical-align:-2px}
+.ronote{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:13.5px;color:var(--ink2);margin:-4px 0 14px}
+.thumb.gi{background:color-mix(in srgb,var(--accent) 12%,var(--surface));color:var(--accent)}
+.thumb.gi svg{width:24px;height:24px}
+.thumb.sm{width:40px;height:40px;border-radius:12px;font-size:16px}
+.mrow{display:flex;align-items:center;gap:12px;padding:12px 16px}
+.mrow+.mrow{border-top:1px solid var(--line)}
+.mrow .t{flex:1;min-width:0}.mrow .t b{display:block;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.mrow .t small{color:var(--ink2);font-size:12.5px;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chip.danger-chip{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 40%,transparent);padding:6px 12px;font-size:13px}
+.chip.danger-chip.armed{background:var(--bad);color:#fff}
+.codebox{font:700 34px var(--num);letter-spacing:.28em;text-align:center;padding:14px 0 4px;color:var(--ink)}
+.btns.two{grid-template-columns:1fr 1fr;margin-top:10px}
+.btns.two .btn{font-size:14.5px;padding:12px 8px}
 .warnline{font-size:13px;color:var(--warn);margin:-4px 2px 10px}
 .toggle{display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:12px;width:100%;text-align:left}
 .toggle .sw2{width:46px;height:28px;border-radius:14px;background:var(--line);position:relative;transition:background .15s;flex:none}
@@ -332,7 +348,7 @@ firstFill:"ครั้งแรกของเชื้อเพลิงนี
 noData:"ยังไม่มีข้อมูลในช่วงนี้",allCars:"ทุกคัน",saved:"บันทึกแล้ว",deleted:"ลบแล้ว",required:"กรอกเลขไมล์ ปริมาณ และราคาหรือยอดเงิน",requiredCar:"ใส่ชื่อรถและเลือกเชื้อเพลิงอย่างน้อย 1 ชนิด",
 requiredSvc:"เลือกรายการและใส่เลขไมล์",period:"ช่วง",fills:"ครั้ง",current:"ปัจจุบัน",lastN:"{n} ครั้งล่าสุด",noEffYet:"ต้องเติมเต็มถังอย่างน้อย 2 ครั้งจึงจะคำนวณได้",
 deleteCarWarn:"ลบรถคันนี้พร้อมบันทึกทั้งหมดของรถ",secondary:"เชื้อเพลิงเสริม",km:"กม.",tapToSwitch:"แตะเพื่อสลับหน่วย",activeCars:"รถที่ใช้งาน",archivedCars:"ในคลัง",
-remindNote:"แอปจะแสดงรายการที่ถึงรอบในหน้าภาพรวมทุกครั้งที่เปิด",unitNum:"หน่วยต่อรถ",autoCalc:"คำนวณ",locate:"ใช้ตำแหน่งปัจจุบัน",locating:"กำลังหาตำแหน่ง…",locDenied:"ขอตำแหน่งไม่ได้ในหน้านี้ พิมพ์ชื่อปั๊มเองได้ ครั้งหน้าแอปจะจำไว้",matched:"ตรงกับปั๊มที่เคยเติม ห่าง {n} ม.",noNearby:"ไม่พบปั๊มใกล้ๆ พิมพ์ชื่อปั๊มเองได้",known:"เคยเติม",m:"ม.",odoMode:"เลขไมล์",lastPrice:"ราคาครั้งก่อน",perWeek:"รายสัปดาห์",perMonth2:"รายเดือน",perYear:"รายปี",historyShort:"ประวัติ",mapShort:"แผนที่",history:"ประวัติการเติม",stationMap:"แผนที่ปั๊ม",nearHere:"ค้นหาปั๊มในพื้นที่นี้",myLoc:"ตำแหน่งของฉัน",myStations:"ปั๊มที่เคยเติม",visits:"เติม {n} ครั้ง",lastVisit:"ล่าสุด",noCoords:"ยังไม่มีพิกัด",noCoordsHint:"ปั๊มนี้ยังไม่มีพิกัด เลื่อนแผนที่ให้จุดกึ่งกลางอยู่ที่ปั๊ม แล้วกดปุ่มด้านล่าง",setCoords:"ปักพิกัดที่กึ่งกลางแผนที่",showOnMap:"ดูบนแผนที่",stDelWarn:"เอาชื่อปั๊มออกจากบันทึกการเติม {n} ครั้ง ข้อมูลการเติมยังอยู่ครบ",neverFilled:"ยังไม่เคยเติมที่นี่",searching:"กำลังค้นหาปั๊ม…",found:"พบ {n} ปั๊มในพื้นที่นี้",zoomIn:"ซูมเข้าให้ใกล้ขึ้นแล้วค้นหาอีกครั้ง",stNone:"ยังไม่มีปั๊มที่บันทึกไว้ ใส่ชื่อปั๊มตอนบันทึกการเติม แล้วปั๊มจะขึ้นที่นี่",stationName:"ชื่อปั๊ม",manage:"แก้ไข / ลบ",mapFail:"โหลดแผนที่ไม่สำเร็จ ตรวจอินเทอร์เน็ตแล้วลองใหม่",addCarSub:"เพิ่มรถคันใหม่ในบ้าน รวมถึงรถไฟฟ้า",account:"บัญชี",localMode:"ใช้แบบในเครื่องนี้ (ไม่ได้ล็อกอิน)",signOut:"ออกจากระบบ",signInSync:"ล็อกอินเพื่อซิงก์ข้อมูล",loginTitle:"บันทึกทุกเรื่องของรถ ในแอปเดียว",email:"อีเมล",password:"รหัสผ่าน",signIn:"เข้าสู่ระบบ",signUp:"สร้างบัญชีใหม่",forgot:"ลืมรหัสผ่าน",useLocal:"ใช้แบบไม่ล็อกอิน (เก็บในเครื่องนี้)",resetSent:"ส่งลิงก์ตั้งรหัสผ่านใหม่ไปที่อีเมลแล้ว",needEmail:"ใส่อีเมลก่อน",notConfigured:"ยังไม่ได้ตั้งค่า Firebase (ไฟล์ firebase-config.js) ใช้แบบในเครื่องไปก่อนได้",loading:"กำลังเชื่อมต่อ…",haveAcc:"มีบัญชีแล้ว? เข้าสู่ระบบ",noAcc:"ยังไม่มีบัญชี? สร้างบัญชีใหม่",fromLine:"นับจากเติมเต็มถังครั้งก่อนที่ {o} กม. ({d})",allFuels:"ทุกเชื้อเพลิง",fullEv:"ชาร์จเต็ม",fullEvSub:"ปิดไว้ถ้าชาร์จไม่เต็ม แอปจะสะสมไว้คำนวณครั้งถัดไป",stationEv:"สถานีชาร์จ / สถานที่ (เช่น บ้าน)",addCharge:"บันทึกการชาร์จ",editCharge:"แก้ไขการชาร์จ",resetTitle:"เริ่มนับใหม่จากครั้งนี้",resetSub:"ใช้เมื่อมีการเติมที่ไม่ได้จด เช่น คนอื่นในบ้านขับไปเติม ข้อมูลเก่าไม่เปลี่ยน อัตราสิ้นเปลืองจะเริ่มนับจากครั้งนี้",resetTag:"เริ่มนับใหม่",gapWarn:"ระยะจากการเติมเต็มถังครั้งก่อน {n} กม. มากผิดปกติ อาจมีการเติมที่ไม่ได้บันทึก",gapBtn:"เริ่มนับใหม่จากครั้งนี้",resetOdo:"เริ่มนับใหม่ต้องใช้เลขไมล์จริง สลับเป็นโหมดเลขไมล์ให้แล้ว",tripMode:"ระยะทริป",tripLabel:"ระยะทริป (กม.)",tripBase:"นับจากเติมเต็มถังครั้งก่อน {d} ที่ {o} กม.",tripResult:"เลขไมล์ที่จะบันทึก {r} กม.",tripNoBase:"ยังไม่มีการเติมเต็มถังครั้งก่อนของเชื้อเพลิงนี้ ครั้งแรกให้ใส่เลขไมล์"},
+remindNote:"แอปจะแสดงรายการที่ถึงรอบในหน้าภาพรวมทุกครั้งที่เปิด",unitNum:"หน่วยต่อรถ",autoCalc:"คำนวณ",locate:"ใช้ตำแหน่งปัจจุบัน",locating:"กำลังหาตำแหน่ง…",locDenied:"ขอตำแหน่งไม่ได้ในหน้านี้ พิมพ์ชื่อปั๊มเองได้ ครั้งหน้าแอปจะจำไว้",matched:"ตรงกับปั๊มที่เคยเติม ห่าง {n} ม.",noNearby:"ไม่พบปั๊มใกล้ๆ พิมพ์ชื่อปั๊มเองได้",known:"เคยเติม",m:"ม.",odoMode:"เลขไมล์",lastPrice:"ราคาครั้งก่อน",roRec:"บันทึกโดย {n} แก้ไขได้เฉพาะคนบันทึกหรือเจ้าของกลุ่ม",roCar:"รถในกลุ่ม {g} แก้ไขได้เฉพาะเจ้าของกลุ่ม",noPermission:"ไม่มีสิทธิ์แก้ไขรายการนี้ คืนค่าเดิมแล้ว",syncFail:"ซิงก์ไม่สำเร็จ ลองใหม่อีกครั้ง",myCarsGroup:"รถของฉัน",me:"ฉัน",everyone:"ทุกคน",group:"กลุ่ม",inGroup:"อยู่ในกลุ่ม {g}",groups:"กลุ่มรถ",loginToShare:"ล็อกอินเพื่อแชร์รถกับครอบครัวหรือทีม",newGroup:"สร้างกลุ่ม",joinGroup:"เข้าร่วมด้วยรหัส",groupName:"ชื่อกลุ่ม",groupNamePh:"เช่น ครอบครัว, บริษัท ABC",create:"สร้างกลุ่ม",members:"สมาชิก",owner:"เจ้าของ",member:"สมาชิก",nMembers:"{n} คน",nCars:"{n} คัน",invite:"เชิญคนเข้ากลุ่ม",makeCode:"สร้างรหัสเชิญ",codeHint:"ส่งรหัสนี้ให้คนที่จะเข้ากลุ่ม ใช้ได้ถึง {d}",shareCode:"แชร์รหัส",copied:"คัดลอกแล้ว",remove:"เอาออก",leave:"ออกจากกลุ่ม",deleteGroup:"ลบกลุ่ม",deleteGroupWarn:"ลบรถ {n} คันและบันทึกทั้งหมดในกลุ่มนี้",enterCode:"รหัสเชิญ 6 ตัว",join:"เข้าร่วม",badCode:"ไม่พบรหัสนี้ ตรวจอีกครั้ง",codeExpired:"รหัสหมดอายุแล้ว ขอรหัสใหม่จากเจ้าของกลุ่ม",alreadyIn:"คุณอยู่ในกลุ่มนี้แล้ว",joined:"เข้าร่วมกลุ่ม {g} แล้ว",left:"ออกจากกลุ่มแล้ว",dispName:"ชื่อที่คนในกลุ่มเห็น",byPerson:"แยกตามคนบันทึก",inviteText:"เข้ากลุ่มรถ \"{g}\" ใน Mind Cars ด้วยรหัส {c}\n{u}",perWeek:"รายสัปดาห์",perMonth2:"รายเดือน",perYear:"รายปี",historyShort:"ประวัติ",mapShort:"แผนที่",history:"ประวัติการเติม",stationMap:"แผนที่ปั๊ม",nearHere:"ค้นหาปั๊มในพื้นที่นี้",myLoc:"ตำแหน่งของฉัน",myStations:"ปั๊มที่เคยเติม",visits:"เติม {n} ครั้ง",lastVisit:"ล่าสุด",noCoords:"ยังไม่มีพิกัด",noCoordsHint:"ปั๊มนี้ยังไม่มีพิกัด เลื่อนแผนที่ให้จุดกึ่งกลางอยู่ที่ปั๊ม แล้วกดปุ่มด้านล่าง",setCoords:"ปักพิกัดที่กึ่งกลางแผนที่",showOnMap:"ดูบนแผนที่",stDelWarn:"เอาชื่อปั๊มออกจากบันทึกการเติม {n} ครั้ง ข้อมูลการเติมยังอยู่ครบ",neverFilled:"ยังไม่เคยเติมที่นี่",searching:"กำลังค้นหาปั๊ม…",found:"พบ {n} ปั๊มในพื้นที่นี้",zoomIn:"ซูมเข้าให้ใกล้ขึ้นแล้วค้นหาอีกครั้ง",stNone:"ยังไม่มีปั๊มที่บันทึกไว้ ใส่ชื่อปั๊มตอนบันทึกการเติม แล้วปั๊มจะขึ้นที่นี่",stationName:"ชื่อปั๊ม",manage:"แก้ไข / ลบ",mapFail:"โหลดแผนที่ไม่สำเร็จ ตรวจอินเทอร์เน็ตแล้วลองใหม่",addCarSub:"เพิ่มรถคันใหม่ในบ้าน รวมถึงรถไฟฟ้า",account:"บัญชี",localMode:"ใช้แบบในเครื่องนี้ (ไม่ได้ล็อกอิน)",signOut:"ออกจากระบบ",signInSync:"ล็อกอินเพื่อซิงก์ข้อมูล",loginTitle:"บันทึกทุกเรื่องของรถ ในแอปเดียว",email:"อีเมล",password:"รหัสผ่าน",signIn:"เข้าสู่ระบบ",signUp:"สร้างบัญชีใหม่",forgot:"ลืมรหัสผ่าน",useLocal:"ใช้แบบไม่ล็อกอิน (เก็บในเครื่องนี้)",resetSent:"ส่งลิงก์ตั้งรหัสผ่านใหม่ไปที่อีเมลแล้ว",needEmail:"ใส่อีเมลก่อน",notConfigured:"ยังไม่ได้ตั้งค่า Firebase (ไฟล์ firebase-config.js) ใช้แบบในเครื่องไปก่อนได้",loading:"กำลังเชื่อมต่อ…",haveAcc:"มีบัญชีแล้ว? เข้าสู่ระบบ",noAcc:"ยังไม่มีบัญชี? สร้างบัญชีใหม่",fromLine:"นับจากเติมเต็มถังครั้งก่อนที่ {o} กม. ({d})",allFuels:"ทุกเชื้อเพลิง",fullEv:"ชาร์จเต็ม",fullEvSub:"ปิดไว้ถ้าชาร์จไม่เต็ม แอปจะสะสมไว้คำนวณครั้งถัดไป",stationEv:"สถานีชาร์จ / สถานที่ (เช่น บ้าน)",addCharge:"บันทึกการชาร์จ",editCharge:"แก้ไขการชาร์จ",resetTitle:"เริ่มนับใหม่จากครั้งนี้",resetSub:"ใช้เมื่อมีการเติมที่ไม่ได้จด เช่น คนอื่นในบ้านขับไปเติม ข้อมูลเก่าไม่เปลี่ยน อัตราสิ้นเปลืองจะเริ่มนับจากครั้งนี้",resetTag:"เริ่มนับใหม่",gapWarn:"ระยะจากการเติมเต็มถังครั้งก่อน {n} กม. มากผิดปกติ อาจมีการเติมที่ไม่ได้บันทึก",gapBtn:"เริ่มนับใหม่จากครั้งนี้",resetOdo:"เริ่มนับใหม่ต้องใช้เลขไมล์จริง สลับเป็นโหมดเลขไมล์ให้แล้ว",tripMode:"ระยะทริป",tripLabel:"ระยะทริป (กม.)",tripBase:"นับจากเติมเต็มถังครั้งก่อน {d} ที่ {o} กม.",tripResult:"เลขไมล์ที่จะบันทึก {r} กม.",tripNoBase:"ยังไม่มีการเติมเต็มถังครั้งก่อนของเชื้อเพลิงนี้ ครั้งแรกให้ใส่เลขไมล์"},
 en:{home:"Overview",fuel:"Fuel",service:"Service",stats:"Stats",more:"Cars & settings",
 addFill:"Log a fill-up",addFillSub:"Petrol, diesel, LPG, NGV or EV charging",addService:"Service & expenses",addServiceSub:"Oil change, repairs, tax, insurance",addCar:"Add car",editCar:"Edit car",
 editFill:"Edit fill-up",editService:"Edit service",car:"Car",cars:"My cars",date:"Date",odo:"Odometer",fuelType:"Fuel",qty:"Amount",price:"Price/unit",total:"Total paid",
@@ -353,7 +369,7 @@ firstFill:"First fill for this fuel; nothing to compare yet",lastFill:"Last fill
 noData:"No data for this period yet",allCars:"All cars",saved:"Saved",deleted:"Deleted",required:"Enter odometer, amount and price or total",requiredCar:"Enter a name and pick at least one fuel",
 requiredSvc:"Pick an item and enter the odometer",period:"Period",fills:"fills",current:"Current",lastN:"last {n} fills",noEffYet:"Fill to full at least twice to calculate",
 deleteCarWarn:"Deletes this car and all of its records",secondary:"Secondary fuel",km:"km",tapToSwitch:"Tap to switch unit",activeCars:"Active",archivedCars:"Archived",
-remindNote:"Due items appear on the overview each time you open the app",unitNum:"per car",autoCalc:"auto",locate:"Use current location",locating:"Finding your location…",locDenied:"Location isn't available here. Type the station name; it will be remembered next time",matched:"Matches a station you've used, {n} m away",noNearby:"No stations found nearby. Type the name instead",known:"used before",m:"m",odoMode:"Odometer",lastPrice:"last price",perWeek:"Weekly",perMonth2:"Monthly",perYear:"Yearly",historyShort:"History",mapShort:"Map",history:"History",stationMap:"Station map",nearHere:"Find stations here",myLoc:"My location",myStations:"Stations you've used",visits:"{n} fills",lastVisit:"Last",noCoords:"No location",noCoordsHint:"This station has no location yet. Move the map so its centre is on the station, then tap below",setCoords:"Pin at map centre",showOnMap:"Show on map",stDelWarn:"Removes this name from {n} fill-ups. The fill-up records stay",neverFilled:"Not used yet",searching:"Searching for stations…",found:"Found {n} stations here",zoomIn:"Zoom in closer and search again",stNone:"No stations yet. Add a station name when logging a fill-up and it will appear here",stationName:"Station name",manage:"Edit / delete",mapFail:"Couldn't load the map. Check your connection and try again",addCarSub:"Add another car, including EVs",account:"Account",localMode:"Using this device only (not signed in)",signOut:"Sign out",signInSync:"Sign in to sync",loginTitle:"Everything about your cars, in one app",email:"Email",password:"Password",signIn:"Sign in",signUp:"Create account",forgot:"Forgot password",useLocal:"Use without an account (this device only)",resetSent:"Password reset link sent to your email",needEmail:"Enter your email first",notConfigured:"Firebase isn't set up yet (firebase-config.js). You can use this device only for now",loading:"Connecting…",haveAcc:"Have an account? Sign in",noAcc:"No account? Create one",fromLine:"Counted from the previous full fill at {o} km ({d})",allFuels:"All fuels",fullEv:"Charged to full",fullEvSub:"Turn off for a partial charge; it counts toward the next full one",stationEv:"Charger / place (e.g. home)",addCharge:"Log a charge",editCharge:"Edit charge",resetTitle:"Start a new count here",resetSub:"Use when someone filled up without logging it. Older records stay as they are; consumption is counted from this fill",resetTag:"New count",gapWarn:"{n} km since the last full fill is unusually far. A fill-up may be missing",gapBtn:"Start a new count here",resetOdo:"A new count needs the real odometer, so odometer mode is on",tripMode:"Trip",tripLabel:"Trip distance (km)",tripBase:"Counted from the last full fill on {d} at {o} km",tripResult:"Odometer to be saved: {r} km",tripNoBase:"No earlier full fill for this fuel yet. Enter the odometer the first time"}
+remindNote:"Due items appear on the overview each time you open the app",unitNum:"per car",autoCalc:"auto",locate:"Use current location",locating:"Finding your location…",locDenied:"Location isn't available here. Type the station name; it will be remembered next time",matched:"Matches a station you've used, {n} m away",noNearby:"No stations found nearby. Type the name instead",known:"used before",m:"m",odoMode:"Odometer",lastPrice:"last price",roRec:"Logged by {n}. Only they or the group owner can edit it",roCar:"This car is in {g}. Only the group owner can edit it",noPermission:"You can't edit this item. Changes were undone",syncFail:"Couldn't sync. Try again",myCarsGroup:"My cars",me:"Me",everyone:"Everyone",group:"Group",inGroup:"In group {g}",groups:"Car groups",loginToShare:"Sign in to share cars with family or a team",newGroup:"New group",joinGroup:"Join with code",groupName:"Group name",groupNamePh:"e.g. Family, ABC Co.",create:"Create group",members:"Members",owner:"Owner",member:"Member",nMembers:"{n} people",nCars:"{n} cars",invite:"Invite people",makeCode:"Create invite code",codeHint:"Send this code to the person joining. Valid until {d}",shareCode:"Share code",copied:"Copied",remove:"Remove",leave:"Leave group",deleteGroup:"Delete group",deleteGroupWarn:"Deletes {n} cars and all records in this group",enterCode:"6-character invite code",join:"Join",badCode:"Code not found. Check it again",codeExpired:"This code has expired. Ask the owner for a new one",alreadyIn:"You're already in this group",joined:"Joined {g}",left:"You left the group",dispName:"Name others in your groups see",byPerson:"By person",inviteText:"Join the car group \"{g}\" in Mind Cars with code {c}\n{u}",perWeek:"Weekly",perMonth2:"Monthly",perYear:"Yearly",historyShort:"History",mapShort:"Map",history:"History",stationMap:"Station map",nearHere:"Find stations here",myLoc:"My location",myStations:"Stations you've used",visits:"{n} fills",lastVisit:"Last",noCoords:"No location",noCoordsHint:"This station has no location yet. Move the map so its centre is on the station, then tap below",setCoords:"Pin at map centre",showOnMap:"Show on map",stDelWarn:"Removes this name from {n} fill-ups. The fill-up records stay",neverFilled:"Not used yet",searching:"Searching for stations…",found:"Found {n} stations here",zoomIn:"Zoom in closer and search again",stNone:"No stations yet. Add a station name when logging a fill-up and it will appear here",stationName:"Station name",manage:"Edit / delete",mapFail:"Couldn't load the map. Check your connection and try again",addCarSub:"Add another car, including EVs",account:"Account",localMode:"Using this device only (not signed in)",signOut:"Sign out",signInSync:"Sign in to sync",loginTitle:"Everything about your cars, in one app",email:"Email",password:"Password",signIn:"Sign in",signUp:"Create account",forgot:"Forgot password",useLocal:"Use without an account (this device only)",resetSent:"Password reset link sent to your email",needEmail:"Enter your email first",notConfigured:"Firebase isn't set up yet (firebase-config.js). You can use this device only for now",loading:"Connecting…",haveAcc:"Have an account? Sign in",noAcc:"No account? Create one",fromLine:"Counted from the previous full fill at {o} km ({d})",allFuels:"All fuels",fullEv:"Charged to full",fullEvSub:"Turn off for a partial charge; it counts toward the next full one",stationEv:"Charger / place (e.g. home)",addCharge:"Log a charge",editCharge:"Edit charge",resetTitle:"Start a new count here",resetSub:"Use when someone filled up without logging it. Older records stay as they are; consumption is counted from this fill",resetTag:"New count",gapWarn:"{n} km since the last full fill is unusually far. A fill-up may be missing",gapBtn:"Start a new count here",resetOdo:"A new count needs the real odometer, so odometer mode is on",tripMode:"Trip",tripLabel:"Trip distance (km)",tripBase:"Counted from the last full fill on {d} at {o} km",tripResult:"Odometer to be saved: {r} km",tripNoBase:"No earlier full fill for this fuel yet. Enter the odometer the first time"}
 };
 const FUELS={lpg:{th:"LPG",en:"LPG",u:"L"},ngv:{th:"NGV",en:"NGV",u:"kg"},g95:{th:"แก๊สโซฮอล์ 95",en:"Gasohol 95",u:"L"},g91:{th:"แก๊สโซฮอล์ 91",en:"Gasohol 91",u:"L"},
 e20:{th:"E20",en:"E20",u:"L"},e85:{th:"E85",en:"E85",u:"L"},b95:{th:"เบนซิน 95",en:"Benzene 95",u:"L"},diesel:{th:"ดีเซล",en:"Diesel",u:"L"},ev:{th:"ไฟฟ้า (EV)",en:"Electric (EV)",u:"kWh"},dieselp:{th:"ดีเซลพรีเมียม",en:"Premium diesel",u:"L"}};
@@ -374,42 +390,140 @@ wrench:'<path d="M14.5 6.5a4 4 0 0 0 5 5L12 19a2.1 2.1 0 0 1-3-3l7.5-7.5"/><path
 chart:'<path d="M4 20h16"/><path d="M6.5 16.5v-4"/><path d="M11 16.5V8"/><path d="M15.5 16.5v-6"/><path d="M20 16.5V5"/>',
 car:'<path d="M4 16.5V12l2-5h12l2 5v4.5"/><path d="M3 12h18"/><rect x="3" y="12" width="18" height="5" rx="1.5"/><circle cx="7.5" cy="14.5" r=".6"/><circle cx="16.5" cy="14.5" r=".6"/><path d="M5.5 17v2M18.5 17v2"/>',
 plus:'<path d="M12 5v14M5 12h14"/>',x:'<path d="M6 6l12 12M18 6 6 18"/>',pin:'<path d="M12 21s6-5.5 6-10.5a6 6 0 0 0-12 0C6 15.5 12 21 12 21z"/><circle cx="12" cy="10.5" r="2"/>',
-download:'<path d="M12 4v11"/><path d="m7.5 10.5 4.5 4.5 4.5-4.5"/><path d="M5 20h14"/>',chev:'<path d="m9 6 6 6-6 6"/>',calendar:'<rect x="4" y="5.5" width="16" height="14.5" rx="2"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/>',map:'<path d="M9 4 3.5 6v14L9 18l6 2 5.5-2V4L15 6 9 4z"/><path d="M9 4v14M15 6v14"/>',list:'<path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r=".8"/><circle cx="4" cy="12" r=".8"/><circle cx="4" cy="18" r=".8"/>',image:'<rect x="3.5" y="5" width="17" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="m4 17 5-4.5 4 3.5 3-2.5 4 3.5"/>'};
+download:'<path d="M12 4v11"/><path d="m7.5 10.5 4.5 4.5 4.5-4.5"/><path d="M5 20h14"/>',chev:'<path d="m9 6 6 6-6 6"/>',user:'<circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20c.8-4 4-6 7.5-6s6.7 2 7.5 6"/>',users:'<circle cx="9" cy="8.5" r="3.4"/><path d="M2.8 19.5c.7-3.5 3.3-5.3 6.2-5.3s5.5 1.8 6.2 5.3"/><path d="M15.5 5.3a3.4 3.4 0 0 1 0 6.4M17.5 14.4c2 .6 3.3 2.3 3.7 5.1"/>',link:'<path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/>',calendar:'<rect x="4" y="5.5" width="16" height="14.5" rx="2"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/>',map:'<path d="M9 4 3.5 6v14L9 18l6 2 5.5-2V4L15 6 9 4z"/><path d="M9 4v14M15 6v14"/>',list:'<path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r=".8"/><circle cx="4" cy="12" r=".8"/><circle cx="4" cy="18" r=".8"/>',image:'<rect x="3.5" y="5" width="17" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="m4 17 5-4.5 4 3.5 3-2.5 4 3.5"/>'};
 const ic=(n,c)=>`<svg class="i${c?" "+c:""}" viewBox="0 0 24 24" aria-hidden="true">${P[n]}</svg>`;
 
 /* ---------- state ---------- */
 const KEYS=["settings","cars","fuel","service"];
 const defaults=()=>({settings:{lang:"th",theme:"auto",accent:"cobalt",eff:"kmpl",cost:"bkm",activeCar:null},cars:[],fuel:[],service:[],_at:{}});
 let S=defaults();
-const UI={tab:"home",filter:"all",fuelF:"all",sCar:null,sPer:"month",sFuel:null};
+const UI={tab:"home",filter:"all",fuelF:"all",byF:"all",sCar:null,sPer:"month",sFuel:null};
 let USER=null,CLOUD=null,AUTH=null,syncing=false;const dirty=new Set();let syncTimer=null;
 const LOCALFLAG="mindcars.localmode";
 const lskey=()=>"mindcars.v1."+(USER?USER.uid:"local");
 function readLocal(key){try{const raw=localStorage.getItem(key);if(raw){const o=JSON.parse(raw);const x=Object.assign(defaults(),o);x.settings=Object.assign(defaults().settings,o.settings||{});x._at=o._at||{};return x;}}catch(e){}return null;}
 function loadLocal(){const keepLang=S.settings.lang;S=readLocal(lskey())||defaults();if(!localStorage.getItem(lskey()))S.settings.lang=keepLang;}
 function saveLocal(){try{localStorage.setItem(lskey(),JSON.stringify(S));}catch(e){}}
-function commit(...keys){const now=Date.now();keys.forEach(k=>{S._at[k]=now;dirty.add(k);});saveLocal();scheduleSync();render();}
+function commit(...keys){const now=Date.now();keys.forEach(k=>{S._at[k]=now;if(k==="settings"||!CLOUD)dirty.add(k);});saveLocal();if(CLOUD&&dirty.size)scheduleSync();if(CLOUD&&keys.some(k=>k!=="settings"))scheduleDiff();render();}
 function scheduleSync(){if(!CLOUD)return;clearTimeout(syncTimer);syncTimer=setTimeout(flush,700);}
 async function flush(){if(!CLOUD)return;if(syncing){scheduleSync();return;}syncing=true;
-  try{for(const k of [...dirty]){dirty.delete(k);try{await CLOUD.set(k,JSON.parse(JSON.stringify({v:S[k],at:S._at[k]||Date.now()})));}catch(e){dirty.add(k);console.warn("sync",k,e);break;}}}
-  finally{syncing=false;}if(dirty.size){clearTimeout(syncTimer);syncTimer=setTimeout(flush,5000);}}
+  try{for(const k of [...dirty]){dirty.delete(k);if(k!=="settings")continue;try{await CLOUD.set(k,JSON.parse(JSON.stringify({v:S[k],at:S._at[k]||Date.now()})));}catch(e){dirty.add(k);console.warn("sync",k,e);break;}}}
+  finally{syncing=false;}if(dirty.has("settings")){clearTimeout(syncTimer);syncTimer=setTimeout(flush,5000);}}
 async function pull(){
-  if(!CLOUD)return;let changed=false,anyRemote=false;
-  try{
-    for(const k of KEYS){
-      const d0=await CLOUD.get(k);
-      if(d0){anyRemote=true;const d=JSON.parse(JSON.stringify(d0));if((d.at||0)>(S._at[k]||0)){S[k]=k==="settings"?Object.assign(defaults().settings,d.v):d.v;S._at[k]=d.at;changed=true;}else if((S._at[k]||0)>(d.at||0))dirty.add(k);}
-      else if(S._at[k])dirty.add(k);
-    }
-    if(!anyRemote&&!S.cars.length){const loc=readLocal("mindcars.v1.local");if(loc&&loc.cars.length){const lang=S.settings.lang;S=loc;S.settings.lang=lang;KEYS.forEach(k=>{S._at[k]=Date.now();dirty.add(k);});changed=true;}}
-  }catch(e){console.warn("pull",e);}
-  if(changed)saveLocal();render();scheduleSync();
+  if(!CLOUD)return;
+  try{const d0=await CLOUD.get("settings");if(d0){const d=JSON.parse(JSON.stringify(d0));if((d.at||0)>(S._at.settings||0)){S.settings=Object.assign(defaults().settings,d.v);S._at.settings=d.at;saveLocal();}else if((S._at.settings||0)>(d.at||0))dirty.add("settings");}else if(S._at.settings)dirty.add("settings");}
+  catch(e){console.warn("pull",e);}
+  render();scheduleSync();startCloud();
 }
 window.addEventListener("online",()=>{if(dirty.size)scheduleSync();});
+
+/* ---------- groups & shared cloud data ---------- */
+let GROUPS={},CL={cars:{},recs:{}},SYNCED={cars:{},recs:{}},SUBS={},LOADED={},READY=false,groupsLoaded=false,pendingDiff=false,diffTimer=null,creatingPersonal=false,renderTimer=null;
+const MYID=()=>USER?USER.uid:"local";
+const myName=()=>(S.settings.displayName||"").trim()||(USER&&USER.email?USER.email.split("@")[0]:(L()==="th"?"ฉัน":"Me"));
+const clone=o=>JSON.parse(JSON.stringify(o));
+function stable(v){if(Array.isArray(v))return "["+v.map(stable).join(",")+"]";if(v&&typeof v==="object")return "{"+Object.keys(v).filter(k=>v[k]!==undefined).sort().map(k=>JSON.stringify(k)+":"+stable(v[k])).join(",")+"}";return JSON.stringify(v===undefined?null:v);}
+const personalGid=()=>CLOUD?"p_"+MYID():"local";
+function groupList(){return CLOUD?Object.values(GROUPS).sort((a,b)=>(b.personal?1:0)-(a.personal?1:0)||(a.name||"").localeCompare(b.name||"")):[{id:"local",name:t("myCarsGroup"),owner:"local",memberIds:["local"],members:{local:{role:"owner",name:myName()}},personal:true}];}
+const gidOf=x=>x.groupId||personalGid();
+const groupOf=x=>groupList().find(g=>g.id===gidOf(x));
+const isOwnerOf=gid=>!CLOUD||(GROUPS[gid]&&GROUPS[gid].owner===MYID());
+const canEditCar=c=>!CLOUD||isOwnerOf(gidOf(c));
+const canEditRec=r=>!CLOUD||!r.byUid||r.byUid===MYID()||isOwnerOf(gidOf(r));
+const isShared=gid=>CLOUD&&GROUPS[gid]&&(GROUPS[gid].memberIds||[]).length>1;
+function whoName(r){if(!r.byUid)return myName();const g=GROUPS[gidOf(r)];const m=g&&g.members&&g.members[r.byUid];return (m&&m.name)||r.byName||"";}
+function renderSoon(){clearTimeout(renderTimer);renderTimer=setTimeout(()=>{if(!scrim)render();else renderPending=true;},60);}
+let renderPending=false;
+function allLocalRecs(){return [...S.fuel.map(r=>[r,"fuel"]),...S.service.map(r=>[r,"service"])];}
+function rebuildFromCL(force){
+  const keepC={},keepR={},delC=new Set(),delR=new Set();
+  if(!force){
+    S.cars.forEach(c=>{if(SYNCED.cars[c.id]!==stable(c))keepC[c.id]=c;});
+    for(const id in SYNCED.cars)if(!S.cars.some(c=>c.id===id))delC.add(id);
+    const ids=new Set();allLocalRecs().forEach(([r])=>{ids.add(r.id);if(SYNCED.recs[r.id]!==stable(r))keepR[r.id]=r;});
+    for(const id in SYNCED.recs)if(!ids.has(id))delR.add(id);
+  }
+  const cars=[],fuel=[],svc=[];
+  for(const id in CL.cars){if(delC.has(id))continue;cars.push(keepC[id]||clone(CL.cars[id]));delete keepC[id];}
+  Object.values(keepC).forEach(c=>cars.push(c));
+  for(const id in CL.recs){if(delR.has(id))continue;const r=keepR[id]||clone(CL.recs[id]);delete keepR[id];(r.kind==="service"?svc:fuel).push(r);}
+  Object.values(keepR).forEach(r=>(S.service.includes(r)?svc:fuel).push(r));
+  cars.sort((a,b)=>(a.createdAt||0)-(b.createdAt||0)||(a.name||"").localeCompare(b.name||""));
+  S.cars=cars;S.fuel=fuel;S.service=svc;
+  SYNCED={cars:{},recs:{}};for(const id in CL.cars)SYNCED.cars[id]=stable(CL.cars[id]);for(const id in CL.recs)SYNCED.recs[id]=stable(CL.recs[id]);
+  saveLocal();renderSoon();
+}
+function startCloud(){
+  if(!CLOUD||!CLOUD.F)return;const F=CLOUD.F,db=CLOUD.db,uid=MYID();
+  const q=F.query(F.collection(db,"groups"),F.where("memberIds","array-contains",uid));
+  SUBS._groups=F.onSnapshot(q,snap=>{
+    const seen=new Set();
+    snap.forEach(d=>{GROUPS[d.id]=Object.assign(clone(d.data()),{id:d.id});seen.add(d.id);if(!SUBS[d.id])subGroup(d.id);});
+    for(const gid of Object.keys(GROUPS))if(!seen.has(gid))dropGroup(gid);
+    groupsLoaded=true;ensurePersonal();checkReady();renderSoon();
+  },e=>{console.warn("groups",e);toast(t("syncFail"));});
+}
+function subGroup(gid){
+  const F=CLOUD.F,db=CLOUD.db;const st={cars:false,recs:false};LOADED[gid]=st;
+  const apply=(bucket,snap)=>{for(const id in CL[bucket])if(CL[bucket][id].groupId===gid)delete CL[bucket][id];snap.forEach(d=>{CL[bucket][d.id]=Object.assign(clone(d.data()),{id:d.id,groupId:gid});});};
+  const u1=F.onSnapshot(F.collection(db,"groups",gid,"cars"),snap=>{apply("cars",snap);st.cars=true;rebuildFromCL();checkReady();},e=>{console.warn("cars",e);st.cars=true;checkReady();});
+  const u2=F.onSnapshot(F.collection(db,"groups",gid,"records"),snap=>{apply("recs",snap);st.recs=true;rebuildFromCL();checkReady();},e=>{console.warn("recs",e);st.recs=true;checkReady();});
+  SUBS[gid]=()=>{u1();u2();};
+}
+function dropGroup(gid){if(SUBS[gid])SUBS[gid]();delete SUBS[gid];delete GROUPS[gid];delete LOADED[gid];
+  for(const b of ["cars","recs"])for(const id in CL[b])if(CL[b][id].groupId===gid)delete CL[b][id];rebuildFromCL(true);}
+function stopCloud(){Object.values(SUBS).forEach(u=>{try{u();}catch(e){}});SUBS={};GROUPS={};LOADED={};CL={cars:{},recs:{}};SYNCED={cars:{},recs:{}};READY=false;groupsLoaded=false;pendingDiff=false;creatingPersonal=false;}
+async function ensurePersonal(){
+  if(!CLOUD||creatingPersonal||GROUPS[personalGid()])return;creatingPersonal=true;
+  try{await CLOUD.F.setDoc(CLOUD.F.doc(CLOUD.db,"groups",personalGid()),{name:t("myCarsGroup"),owner:MYID(),personal:true,memberIds:[MYID()],members:{[MYID()]:{role:"owner",name:myName(),email:USER.email||"",joined:Date.now()}},createdAt:Date.now()});}
+  catch(e){console.warn("personal",e);creatingPersonal=false;}
+}
+function checkReady(){
+  if(READY||!groupsLoaded||!GROUPS[personalGid()])return;
+  if(!Object.values(LOADED).every(s=>s.cars&&s.recs))return;
+  READY=true;migrate().finally(()=>{if(pendingDiff){pendingDiff=false;scheduleDiff();}});renderSoon();
+}
+async function migrate(){
+  if(!CLOUD||S.settings.migratedV2)return;
+  try{
+    const got=await Promise.all(["cars","fuel","service"].map(k=>CLOUD.get(k).catch(()=>null)));
+    let cars=(got[0]&&got[0].v)||[],fuel=(got[1]&&got[1].v)||[],svc=(got[2]&&got[2].v)||[];
+    if(!cars.length){const loc=readLocal("mindcars.v1.local");if(loc&&loc.cars.length){cars=loc.cars;fuel=loc.fuel;svc=loc.service;}}
+    const pg=personalGid(),F=CLOUD.F,db=CLOUD.db,uid=MYID(),nm=myName();
+    const ops=[];
+    cars.forEach((c,i)=>{if(CL.cars[c.id])return;ops.push([F.doc(db,"groups",pg,"cars",c.id),clone(Object.assign({},c,{groupId:pg,createdAt:c.createdAt||Date.now()+i}))]);});
+    fuel.forEach(r=>{if(CL.recs[r.id])return;ops.push([F.doc(db,"groups",pg,"records",r.id),clone(Object.assign({},r,{kind:"fuel",groupId:pg,byUid:uid,byName:nm,at:Date.now()}))]);});
+    svc.forEach(r=>{if(CL.recs[r.id])return;ops.push([F.doc(db,"groups",pg,"records",r.id),clone(Object.assign({},r,{kind:"service",groupId:pg,byUid:uid,byName:nm,at:Date.now()}))]);});
+    for(let i=0;i<ops.length;i+=400){const b=F.writeBatch(db);ops.slice(i,i+400).forEach(([ref,d])=>b.set(ref,d));await b.commit();}
+    S.settings.migratedV2=true;commit("settings");
+  }catch(e){console.warn("migrate",e);}
+}
+function scheduleDiff(){if(!CLOUD)return;if(!READY){pendingDiff=true;return;}clearTimeout(diffTimer);diffTimer=setTimeout(pushDiff,350);}
+async function pushDiff(){
+  if(!CLOUD||!READY)return;const F=CLOUD.F,db=CLOUD.db,uid=MYID();
+  const ops=[];let blocked=false;
+  const curC={};S.cars.forEach(c=>{if(!c.groupId)c.groupId=personalGid();if(!c.createdAt)c.createdAt=Date.now();curC[c.id]=c;});
+  for(const id in curC){const c=curC[id];if(SYNCED.cars[id]===stable(c))continue;if(!canEditCar(CL.cars[id]||c)){blocked=true;continue;}ops.push(["set",F.doc(db,"groups",c.groupId,"cars",id),clone(c)]);}
+  for(const id in SYNCED.cars)if(!curC[id]){const o=CL.cars[id];if(!o)continue;if(!canEditCar(o)){blocked=true;continue;}ops.push(["del",F.doc(db,"groups",o.groupId,"cars",id)]);}
+  const cur={};
+  allLocalRecs().forEach(([r,kind])=>{const o=CL.recs[r.id];r.kind=kind;
+    if(!r.groupId||(o&&o.carId!==r.carId)){const car=carById(r.carId);r.groupId=(car&&car.groupId)||(o&&o.groupId)||personalGid();}
+    if(!r.byUid){if(o){r.byUid=o.byUid;r.byName=o.byName;r.at=o.at;}else{r.byUid=uid;r.byName=myName();r.at=Date.now();}}
+    cur[r.id]=r;});
+  for(const id in cur){const r=cur[id],o=CL.recs[id];if(SYNCED.recs[id]===stable(r))continue;if(o&&!canEditRec(o)){blocked=true;continue;}
+    if(o&&o.groupId!==r.groupId)ops.push(["del",F.doc(db,"groups",o.groupId,"records",id)]);
+    ops.push(["set",F.doc(db,"groups",r.groupId,"records",id),clone(r)]);}
+  for(const id in SYNCED.recs)if(!cur[id]){const o=CL.recs[id];if(!o)continue;if(!canEditRec(o)){blocked=true;continue;}ops.push(["del",F.doc(db,"groups",o.groupId,"records",id)]);}
+  if(blocked){rebuildFromCL(true);toast(t("noPermission"));}
+  for(let i=0;i<ops.length;i+=400){const b=F.writeBatch(db);ops.slice(i,i+400).forEach(([k,ref,d])=>k==="set"?b.set(ref,d):b.delete(ref));
+    try{await b.commit();}catch(e){console.warn("diff",e);rebuildFromCL(true);toast(t("syncFail"));break;}}
+}
 window.MC={
   ready(api){AUTH=api;if(!USER)render();},
-  signedIn(user,cloud){USER=user;CLOUD=cloud;try{localStorage.removeItem(LOCALFLAG);}catch(e){}loadLocal();render();pull();},
-  signedOut(){CLOUD=null;if(localStorage.getItem(LOCALFLAG)){USER={uid:"local",local:true};loadLocal();}else USER=null;render();}
+  signedIn(user,cloud){stopCloud();USER=user;CLOUD=cloud;try{localStorage.removeItem(LOCALFLAG);}catch(e){}loadLocal();
+    S.cars.forEach(c=>SYNCED.cars[c.id]=stable(c));allLocalRecs().forEach(([r])=>SYNCED.recs[r.id]=stable(r));
+    render();pull();},
+  signedOut(){stopCloud();CLOUD=null;if(localStorage.getItem(LOCALFLAG)){USER={uid:"local",local:true};loadLocal();}else USER=null;render();}
 };
 try{if(localStorage.getItem(LOCALFLAG)){USER={uid:"local",local:true};loadLocal();}}catch(e){}
 
@@ -571,24 +685,27 @@ function fillCard(f,map,showCar){
   const car=carById(f.carId);const s=map[f.id];
   let eff="";if(s&&car){const e=effStr(car,f.fuel,s.d,s.q),c=costStr(car,f.fuel,s.d,s.m);eff=`<div class="e-eff"><span class="effv">${e.v} <small>${esc(e.u)}</small></span><span class="costv">${c.v} ${esc(c.u)}</span></div><div class="e-from">${esc(t("fromLine",{o:fmt(s.from,0),d:fdate(s.fromDate,{day:"numeric",month:"short",year:"2-digit"})}))}</div>`;}
   return `<button class="entry" data-act="editFill:${f.id}"><div class="e-top"><div><div class="e-date">${esc(fdate(f.date))}${showCar&&car?" · "+esc(car.name):""}</div><div class="e-amt num">฿${fmt(f.total,2)}</div></div><div class="e-right"><div class="e-odo num">${fmt(f.odo,0)} ${esc(t("km"))}</div>${s?`<span class="dist">+${fmt(s.d,0)} ${esc(t("km"))}</span>`:""}</div></div>
-  <div class="e-mid"><span class="tag">${esc(fuelName(f.fuel))}</span><span class="num">${fmt(f.qty,2)} ${esc(fuelUnit(f.fuel))} × ฿${fmt(f.price,2)}</span>${f.full?"":`<span class="tag warn">${esc(t("partial"))}</span>`}${f.reset?`<span class="tag">${esc(t("resetTag"))}</span>`:""}</div>${eff}
+  <div class="e-mid"><span class="tag">${esc(fuelName(f.fuel))}</span>${isShared(gidOf(f))?`<span class="who">${ic("user","xs")}${esc(whoName(f))}</span>`:""}<span class="num">${fmt(f.qty,2)} ${esc(fuelUnit(f.fuel))} × ฿${fmt(f.price,2)}</span>${f.full?"":`<span class="tag warn">${esc(t("partial"))}</span>`}${f.reset?`<span class="tag">${esc(t("resetTag"))}</span>`:""}</div>${eff}
   ${f.station?`<div class="e-st">${ic("pin","sm")}${esc(f.station)}</div>`:""}</button>`;
 }
 function svcCard(r,showCar){
   const car=carById(r.carId);
   return `<button class="entry" data-act="editSvc:${r.id}"><div class="e-top"><div><div class="e-date">${esc(fdate(r.date))}${showCar&&car?" · "+esc(car.name):""}</div><div class="e-amt" style="font:600 17px var(--body)">${esc(itemName(r))}</div></div><div class="e-right"><div class="e-odo num">${r.odo?fmt(r.odo,0)+" "+esc(t("km")):""}</div><div class="num" style="font-weight:600;margin-top:2px">฿${fmt(r.cost||0,0)}</div></div></div>
-  <div class="e-mid"><span class="tag">${esc(r.by==="shop"?t("shop"):t("self"))}</span>${r.shop?`<span>${esc(r.shop)}</span>`:""}</div>${r.note?`<div class="e-st">${esc(r.note)}</div>`:""}</button>`;
+  <div class="e-mid"><span class="tag">${esc(r.by==="shop"?t("shop"):t("self"))}</span>${isShared(gidOf(r))?`<span class="who">${ic("user","xs")}${esc(whoName(r))}</span>`:""}${r.shop?`<span>${esc(r.shop)}</span>`:""}</div>${r.note?`<div class="e-st">${esc(r.note)}</div>`:""}</button>`;
 }
 function psel(key,icon,opts,cur,allVal,cls){
   const o=opts.find(x=>x[0]===cur)||opts[0];const on=allVal!==undefined&&o[0]!==allVal;
   return `<label class="psel ${on?"on":""} ${cls||""}">${ic(icon,"sm")}<span class="pv">${esc(o[1])}</span><select data-chg="${key}" aria-label="${esc(o[1])}">${opts.map(x=>`<option value="${esc(x[0])}" ${x[0]===o[0]?"selected":""}>${esc(x[1])}</option>`).join("")}</select></label>`;
 }
-function filterBar(fset){
-  const cars=activeCars();const showCar=cars.length>1,showFuel=fset&&fset.length>1;
-  if(!showCar&&!showFuel)return "";
+function personOpts(recs){const m=new Map();recs.forEach(r=>{const u=r.byUid||MYID();if(!m.has(u))m.set(u,u===MYID()?t("me"):whoName(r));});return [...m.entries()];}
+function filterBar(fset,people){
+  const cars=activeCars();const showCar=cars.length>1,showFuel=fset&&fset.length>1,showWho=people&&people.length>1;
+  if(!showCar&&!showFuel&&!showWho)return "";
+  const who=showWho?psel("byf","user",[["all",t("everyone")],...people],UI.byF,"all"):"";
   const car=showCar?psel("filt","car",[["all",t("allCars")],...cars.map(c=>[c.id,c.name])],UI.filter,"all"):"";
   const fu=showFuel?psel("ffuel","fuel",[["all",t("allFuels")],...fset.map(k=>[k,fuelName(k)])],UI.fuelF,"all"):"";
-  return `<div class="fbar">${car}${fu}</div>`;
+  const parts=[car,fu,who].filter(Boolean);
+  return parts.length>2?`<div class="fbar">${car}${fu}</div><div class="fbar">${who}</div>`:`<div class="fbar">${parts.join("")}</div>`;
 }
 function filterIds(){const a=activeCars();if(UI.filter!=="all"&&a.some(c=>c.id===UI.filter))return [UI.filter];return a.map(c=>c.id);}
 function vFuel(){
@@ -599,8 +716,9 @@ function vFuel(){
 function vFuelList(){
   const ids=filterIds();const all=S.fuel.filter(f=>ids.includes(f.carId));
   const fset=[...new Set(all.map(f=>f.fuel))];if(!fset.includes(UI.fuelF))UI.fuelF="all";
-  const list=all.filter(f=>UI.fuelF==="all"||f.fuel===UI.fuelF).sort((a,b)=>b.date.localeCompare(a.date)||b.odo-a.odo);
-  const head=filterBar(fset);
+  const people=personOpts(all);if(!people.some(x=>x[0]===UI.byF))UI.byF="all";
+  const list=all.filter(f=>(UI.fuelF==="all"||f.fuel===UI.fuelF)&&(UI.byF==="all"||(f.byUid||MYID())===UI.byF)).sort((a,b)=>b.date.localeCompare(a.date)||b.odo-a.odo);
+  const head=filterBar(fset,people);
   if(!list.length)return head+`<div class="panel empty"><h3>${esc(t("noFills"))}</h3><p>${esc(t("noFillsHint"))}</p><button class="btn" data-act="addFill">${ic("plus")}${esc(t("addFill"))}</button></div>`;
   const map=segMap();let html="",m="";const multi=ids.length>1;
   for(const f of list){const mk=f.date.slice(0,7);if(mk!==m){m=mk;const tot=list.filter(x=>x.date.slice(0,7)===mk).reduce((a,x)=>a+(+x.total||0),0);html+=`<div class="month-h">${esc(perLabel(mk,"month",true))} · <span class="num">฿${fmt(tot,0)}</span></div>`;}html+=fillCard(f,map,multi);}
@@ -608,9 +726,9 @@ function vFuelList(){
 }
 function vService(){
   if(!activeCars().length)return emptyCars();
-  const ids=filterIds();const head=filterBar(null);
+  const ids=filterIds();const sAll=S.service.filter(r=>ids.includes(r.carId));const people=personOpts(sAll);if(!people.some(x=>x[0]===UI.byF))UI.byF="all";const head=filterBar(null,people);
   const rems=ids.flatMap(id=>reminders(id)).sort((a,b)=>a.score-b.score);
-  const list=S.service.filter(r=>ids.includes(r.carId)).sort((a,b)=>b.date.localeCompare(a.date)||b.odo-a.odo);
+  const list=sAll.filter(r=>UI.byF==="all"||(r.byUid||MYID())===UI.byF).sort((a,b)=>b.date.localeCompare(a.date)||b.odo-a.odo);
   if(!list.length)return head+`<div class="panel empty"><h3>${esc(t("noService"))}</h3><p>${esc(t("noServiceHint"))}</p><button class="btn" data-act="addSvc">${ic("plus")}${esc(t("addService"))}</button></div>`;
   return head+(rems.length?`<h2 class="sec" style="margin-top:4px">${esc(t("reminders"))}</h2><div class="panel">${rems.map(remRow).join("")}</div><p class="hint" style="margin:8px 4px 0">${esc(t("remindNote"))}</p>`:"")+
   `<h2 class="sec">${esc(t("recent"))}</h2><div class="list">${list.map(r=>svcCard(r,ids.length>1)).join("")}</div>`;
@@ -642,6 +760,9 @@ function vStats(){
   let html=`<div class="fbar">${cars.length>1?psel("scar","car",[["all",t("allCars")],...cars.map(c=>[c.id,c.name])],UI.sCar,"all"):""}${psel("sper","calendar",[["week",t("perWeek")],["month",t("perMonth2")],["year",t("perYear")]],per)}</div>`;
   const y=todayISO().slice(0,4);const ya=aggregate(ids,"year").find(o=>o.key===y)||{fuel:0,svc:0,d:0};const yt=ya.fuel+ya.svc;
   html+=`<section class="panel year"><div><small>${esc(t("thisYear",{y:L()==="th"?+y+543:y}))} · ${esc(t("totalCost"))}</small><b>฿${fmt(yt,0)}</b></div><div><small>${esc(t("distance"))}</small><b>${fmt(ya.d,0)}</b> <small style="display:inline">${esc(t("km"))}</small></div><div><small>${esc(t("fuelCost"))}</small><b>฿${fmt(ya.fuel,0)}</b></div><div><small>${esc(t("serviceCost"))}</small><b>฿${fmt(ya.svc,0)}</b></div></section>`;
+  {const recs=[...S.fuel,...S.service].filter(r=>ids.includes(r.carId)&&r.date.slice(0,4)===y);const by=new Map();
+    recs.forEach(r=>{const u=r.byUid||MYID();const o=by.get(u)||{name:u===MYID()?t("me"):whoName(r),f:0,sv:0,n:0};if(S.fuel.includes(r)){o.f+=+r.total||0;o.n++;}else o.sv+=+r.cost||0;by.set(u,o);});
+    if(by.size>1)html+=`<h2 class="sec">${esc(t("byPerson"))} · ${esc(L()==="th"?String(+y+543):y)}</h2><div class="panel tablewrap"><table class="ptable"><thead><tr><th>${esc(t("member"))}</th><th>${esc(t("fills"))}</th><th>${esc(t("fuelCost"))}</th><th>${esc(t("serviceCost"))}</th></tr></thead><tbody>${[...by.values()].sort((a,b)=>(b.f+b.sv)-(a.f+a.sv)).map(o=>`<tr><td style="font-family:var(--body)">${esc(o.name)}</td><td>${o.n}</td><td>${fmt(o.f,0)}</td><td>${fmt(o.sv,0)}</td></tr>`).join("")}</tbody></table></div>`;}
   if(car){
     if(!car.fuels.includes(UI.sFuel))UI.sFuel=car.primary;const fu=UI.sFuel;
     const fsel=car.fuels.length>1?psel("sfuel","fuel",car.fuels.map(f=>[f,fuelName(f)]),fu,undefined,"sm"):`<span class="muted" style="font-size:13px">${esc(fuelName(fu))}</span>`;
@@ -662,10 +783,13 @@ function vStats(){
 }
 function vMore(){
   const a=activeCars(),ar=S.cars.filter(c=>c.archived);const st=S.settings;
-  const row=c=>`<button class="carrow" data-act="editCar:${c.id}"><span class="thumb" style="${c.photo?`background-image:url('${c.photo}')`:""}">${c.photo?"":monogram(c)}</span><span class="t"><b>${esc(c.name)}</b><small>${esc([c.plate,(c.fuels||[]).map(fuelName).join(" + ")].filter(Boolean).join(" · "))}</small></span>${ic("chev","sm")}</button>`;
+  const row=c=>`<button class="carrow" data-act="editCar:${c.id}"><span class="thumb" style="${c.photo?`background-image:url('${c.photo}')`:""}">${c.photo?"":monogram(c)}</span><span class="t"><b>${esc(c.name)}</b><small>${esc([c.plate,(c.fuels||[]).map(fuelName).join(" + "),groupList().length>1?(groupOf(c)||{}).name:""].filter(Boolean).join(" · "))}</small></span>${ic("chev","sm")}</button>`;
   const seg=(act,cur,opts)=>`<div class="seg">${opts.map(([k,lab])=>`<button class="${cur===k?"on":""}" data-act="${act}:${k}">${esc(lab)}</button>`).join("")}</div>`;
   return `${a.length?`<div class="panel">${a.map(row).join("")}</div><div class="btns" style="margin-top:10px"><button class="btn ghost" data-act="addCar">${ic("plus")}${esc(t("addCar"))}</button></div>`:emptyCars()}
   ${ar.length?`<h2 class="sec">${esc(t("archivedCars"))}</h2><div class="panel">${ar.map(row).join("")}</div>`:""}
+  <h2 class="sec">${esc(t("groups"))}</h2>
+  ${CLOUD?`<div class="panel">${groupList().map(g=>{const n=(g.memberIds||[]).length,nc=S.cars.filter(c=>gidOf(c)===g.id).length;return `<button class="carrow" data-act="grp:${esc(g.id)}"><span class="thumb gi">${ic("users")}</span><span class="t"><b>${esc(g.name)}</b><small>${esc(t("nMembers",{n}))} · ${esc(t("nCars",{n:nc}))} · ${esc(g.owner===MYID()?t("owner"):t("member"))}</small></span>${ic("chev","sm")}</button>`;}).join("")}</div>
+  <div class="btns two"><button class="btn ghost" data-act="newGroup">${ic("plus")}${esc(t("newGroup"))}</button><button class="btn ghost" data-act="joinGroup">${ic("link")}${esc(t("joinGroup"))}</button></div>`:`<div class="panel srow"><p class="hint" style="margin:0">${esc(t("loginToShare"))}</p></div>`}
   <h2 class="sec">${esc(t("settings"))}</h2>
   <div class="panel">
    <div class="srow"><b>${esc(t("language"))}</b>${seg("lang",st.lang,[["th","ไทย"],["en","English"]])}</div>
@@ -676,7 +800,7 @@ function vMore(){
   </div>
   <h2 class="sec">${esc(t("data"))}</h2>
   <div class="panel"><div class="srow"><div class="chooser"><button data-act="export"><span class="ic">${ic("download")}</span><span>${esc(t("export"))}<small>${esc(t("exportSub"))}</small></span></button></div><p class="hint">${esc(CLOUD?t("synced"):t("localOnly"))}</p></div>
-  <div class="srow"><b>${esc(t("account"))}</b><p class="hint" style="margin:0 0 10px">${esc(USER&&USER.email?USER.email:t("localMode"))}</p>${USER&&USER.local?`<button class="btn ghost" data-act="leavelocal">${esc(t("signInSync"))}</button>`:`<button class="btn ghost" data-act="signout">${esc(t("signOut"))}</button>`}</div>
+  <div class="srow"><b>${esc(t("account"))}</b><p class="hint" style="margin:0 0 10px">${esc(USER&&USER.email?USER.email:t("localMode"))}</p>${CLOUD?`<label class="f"><span>${esc(t("dispName"))}</span><input data-chg="dname" value="${esc(myName())}" maxlength="30"></label>`:""}${USER&&USER.local?`<button class="btn ghost" data-act="leavelocal">${esc(t("signInSync"))}</button>`:`<button class="btn ghost" data-act="signout">${esc(t("signOut"))}</button>`}</div>
   <div class="srow"><button class="btn danger" data-act="clear">${esc(t("clearAll"))}</button></div></div>`;
 }
 
@@ -782,11 +906,68 @@ function stationSheet(i){
   <div class="savebar"><button type="button" class="btn" id="st-save">${esc(t("save"))}</button></div>`,el=>{
     bindClose(el);const q=id=>el.querySelector("#"+id);
     q("st-save").onclick=()=>{const nn=q("st-name").value.trim();if(!nn||nn===o.name){closeSheet();return;}
-      S.fuel.forEach(f=>{if(f.station===o.name)f.station=nn;});closeSheet();toast(t("saved"));commit("fuel");};
+      S.fuel.forEach(f=>{if(f.station===o.name&&canEditRec(f))f.station=nn;});closeSheet();toast(t("saved"));commit("fuel");};
     if(q("st-show"))q("st-show").onclick=()=>{closeSheet();UI.mapView={c:{lat:o.lat,lng:o.lng},z:16};if(MAP)MAP.setView([o.lat,o.lng],16);window.scrollTo({top:0,behavior:"smooth"});};
     if(q("st-pin"))q("st-pin").onclick=()=>{if(!MAP){toast(t("mapFail"));return;}const c=MAP.getCenter();
-      S.fuel.forEach(f=>{if(f.station===o.name&&f.lat==null){f.lat=+c.lat.toFixed(5);f.lng=+c.lng.toFixed(5);}});UI.mapView={c,z:MAP.getZoom()};closeSheet();toast(t("saved"));commit("fuel");};
-    armDelete(q("st-del"),()=>{S.fuel.forEach(f=>{if(f.station===o.name){f.station="";delete f.lat;delete f.lng;}});closeSheet();toast(t("deleted"));commit("fuel");});
+      S.fuel.forEach(f=>{if(f.station===o.name&&f.lat==null&&canEditRec(f)){f.lat=+c.lat.toFixed(5);f.lng=+c.lng.toFixed(5);}});UI.mapView={c,z:MAP.getZoom()};closeSheet();toast(t("saved"));commit("fuel");};
+    armDelete(q("st-del"),()=>{S.fuel.forEach(f=>{if(f.station===o.name&&canEditRec(f)){f.station="";delete f.lat;delete f.lng;}});closeSheet();toast(t("deleted"));commit("fuel");});
+  });
+}
+
+/* ---------- group management ---------- */
+const FS=()=>CLOUD&&CLOUD.F,DB_=()=>CLOUD&&CLOUD.db;
+function randCode(){const A="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";let c="";const r=crypto.getRandomValues(new Uint32Array(6));for(const x of r)c+=A[x%A.length];return c;}
+async function updateMyName(nm){if(!CLOUD)return;const F=FS();for(const g of Object.values(GROUPS)){try{await F.updateDoc(F.doc(DB_(),"groups",g.id),{["members."+MYID()+".name"]:nm});}catch(e){console.warn("name",e);}}}
+function newGroupSheet(){
+  openSheet(`${sheetHead(t("newGroup"))}<label class="f"><span>${esc(t("groupName"))}</span><input id="ng-name" maxlength="40" placeholder="${esc(t("groupNamePh"))}"></label><p class="formerr" id="ng-err"></p><div class="savebar"><button type="button" class="btn" id="ng-go">${esc(t("create"))}</button></div>`,el=>{
+    bindClose(el);const q=id=>el.querySelector("#"+id);
+    q("ng-go").onclick=async()=>{const nm=q("ng-name").value.trim();if(!nm){q("ng-err").textContent=t("groupName");return;}
+      q("ng-go").disabled=true;const F=FS(),id="g_"+nid();
+      try{await F.setDoc(F.doc(DB_(),"groups",id),{name:nm,owner:MYID(),personal:false,memberIds:[MYID()],members:{[MYID()]:{role:"owner",name:myName(),email:USER.email||"",joined:Date.now()}},createdAt:Date.now()});closeSheet();toast(t("saved"));setTimeout(()=>groupSheet(id),300);}
+      catch(e){q("ng-err").textContent=t("syncFail");q("ng-go").disabled=false;}};
+  });
+}
+function joinSheet(){
+  openSheet(`${sheetHead(t("joinGroup"))}<label class="f n"><span>${esc(t("enterCode"))}</span><input id="jg-code" maxlength="6" autocapitalize="characters" autocomplete="off" style="letter-spacing:.3em;text-transform:uppercase;font-size:22px"></label><p class="formerr" id="jg-err"></p><div class="savebar"><button type="button" class="btn" id="jg-go">${esc(t("join"))}</button></div>`,el=>{
+    bindClose(el);const q=id=>el.querySelector("#"+id);
+    q("jg-go").onclick=async()=>{const code=q("jg-code").value.trim().toUpperCase();const err=m=>{q("jg-err").textContent=m;};if(code.length!==6){err(t("enterCode"));return;}
+      q("jg-go").disabled=true;const F=FS();
+      try{const sn=await F.getDoc(F.doc(DB_(),"invites",code));if(!sn.exists()){err(t("badCode"));return;}const d=sn.data();
+        if(d.expires<Date.now()){err(t("codeExpired"));return;}if(GROUPS[d.gid]){err(t("alreadyIn"));return;}
+        await F.updateDoc(F.doc(DB_(),"groups",d.gid),{memberIds:F.arrayUnion(MYID()),["members."+MYID()]:{role:"member",name:myName(),email:USER.email||"",joined:Date.now()},joinCode:code});
+        closeSheet();toast(t("joined",{g:d.gname||""}));}
+      catch(e){console.warn("join",e);err(t("badCode"));}
+      finally{if(q("jg-go"))q("jg-go").disabled=false;}};
+  });
+}
+function groupSheet(gid){
+  const g=groupList().find(x=>x.id===gid);if(!g)return;const own=g.owner===MYID();
+  const mem=Object.entries(g.members||{}).sort((a,b)=>(a[1].role==="owner"?-1:0)-(b[1].role==="owner"?-1:0));
+  const nc=S.cars.filter(c=>gidOf(c)===gid).length;
+  openSheet(`${sheetHead(g.name)}
+  ${own?`<label class="f"><span>${esc(t("groupName"))}</span><input id="gs-name" maxlength="40" value="${esc(g.name)}"></label>`:""}
+  <h2 class="sec" style="margin-top:6px">${esc(t("members"))} (${mem.length})</h2>
+  <div class="panel">${mem.map(([u,m])=>`<div class="mrow"><span class="thumb gi sm">${esc((m.name||"?").slice(0,1).toUpperCase())}</span><span class="t"><b>${esc(m.name||"")}${u===MYID()?` <span class="muted" style="font-weight:400">(${esc(t("me"))})</span>`:""}</b><small class="em">${esc(m.email||"")}</small></span>${m.role==="owner"?`<span class="tag">${esc(t("owner"))}</span>`:own?`<button type="button" class="chip danger-chip" data-rm="${esc(u)}">${esc(t("remove"))}</button>`:`<span class="tag">${esc(t("member"))}</span>`}</div>`).join("")}</div>
+  ${own?`<h2 class="sec">${esc(t("invite"))}</h2><div class="panel srow"><div id="gs-code"></div><button type="button" class="btn ghost" id="gs-mk">${ic("link")}${esc(t("makeCode"))}</button></div>`:""}
+  <div class="btns">${!own?`<button type="button" class="btn danger" id="gs-leave">${esc(t("leave"))}</button>`:""}${own&&!g.personal?`<button type="button" class="btn danger" id="gs-del">${esc(t("deleteGroup"))}</button><p class="hint" style="text-align:center;margin:0">${esc(t("deleteGroupWarn",{n:nc}))}</p>`:""}</div>
+  ${own?`<div class="savebar"><button type="button" class="btn" id="gs-save">${esc(t("save"))}</button></div>`:""}`,el=>{
+    bindClose(el);const q=id=>el.querySelector("#"+id);const F=FS(),ref=F.doc(DB_(),"groups",gid);
+    if(q("gs-save"))q("gs-save").onclick=async()=>{const nm=q("gs-name").value.trim();if(nm&&nm!==g.name){try{await F.updateDoc(ref,{name:nm});toast(t("saved"));}catch(e){toast(t("syncFail"));}}closeSheet();};
+    el.querySelectorAll("[data-rm]").forEach(b=>{const u=b.dataset.rm;b.onclick=async()=>{if(!b.classList.contains("armed")){b.classList.add("armed");b.textContent=t("confirmTap");return;}
+      try{await F.updateDoc(ref,{memberIds:F.arrayRemove(u),["members."+u]:F.deleteField()});b.closest(".mrow").remove();toast(t("saved"));}catch(e){toast(t("syncFail"));}};});
+    if(q("gs-mk"))q("gs-mk").onclick=async()=>{const code=randCode(),exp=Date.now()+7*864e5;q("gs-mk").disabled=true;
+      try{await F.setDoc(F.doc(DB_(),"invites",code),{gid,gname:g.name,by:MYID(),expires:exp});
+        q("gs-code").innerHTML=`<div class="codebox num">${code}</div><p class="hint" style="margin:6px 0 12px;text-align:center">${esc(t("codeHint",{d:fdate(new Date(exp).toISOString().slice(0,10))}))}</p><button type="button" class="btn" id="gs-share">${esc(t("shareCode"))}</button>`;
+        q("gs-mk").style.display="none";
+        q("gs-share").onclick=async()=>{const txt=t("inviteText",{g:g.name,c:code,u:location.href.split("#")[0]});
+          try{if(navigator.share){await navigator.share({text:txt});return;}}catch(e){return;}
+          try{await navigator.clipboard.writeText(txt);toast(t("copied"));}catch(e){}};}
+      catch(e){console.warn("invite",e);toast(t("syncFail"));q("gs-mk").disabled=false;}};
+    if(q("gs-leave"))armDelete(q("gs-leave"),async()=>{try{await F.updateDoc(ref,{memberIds:F.arrayRemove(MYID()),["members."+MYID()]:F.deleteField()});closeSheet();toast(t("left"));}catch(e){toast(t("syncFail"));}});
+    if(q("gs-del"))armDelete(q("gs-del"),async()=>{try{
+      const refs=[];for(const id in CL.cars)if(CL.cars[id].groupId===gid)refs.push(F.doc(DB_(),"groups",gid,"cars",id));for(const id in CL.recs)if(CL.recs[id].groupId===gid)refs.push(F.doc(DB_(),"groups",gid,"records",id));
+      for(let i=0;i<refs.length;i+=400){const b=F.writeBatch(DB_());refs.slice(i,i+400).forEach(r=>b.delete(r));await b.commit();}
+      await F.deleteDoc(ref);closeSheet();toast(t("deleted"));}catch(e){console.warn(e);toast(t("syncFail"));}});
   });
 }
 
@@ -796,7 +977,7 @@ const AUTHERR={"auth/invalid-credential":["อีเมลหรือรหั�
 const authMsg=e=>{const m=AUTHERR[e&&e.code];return m?m[L()==="th"?0:1]:(e&&e.message)||String(e);};
 function vLogin(){
   const cfg=AUTH&&AUTH.configured;
-  return `<div class="wrap login"><div class="brandmark">${ic("fuel")}</div><h1 class="lt">Mind Cars</h1><p class="ls">${esc(t("loginTitle"))}</p>
+  return `<div class="wrap login"><div class="brandmark"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="18" fill="#0F1E2E"/><path d="M15 45V23l12 13 12-13v14" fill="none" stroke="#6C8BFF" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M42.5 25.5A9 9 0 1 1 55.5 25.5" fill="none" stroke="#F4C64E" stroke-width="3" stroke-linecap="round"/><path d="M49 20L53.2 14.8" stroke="#F4C64E" stroke-width="3" stroke-linecap="round"/><circle cx="49" cy="20" r="2.2" fill="#F4C64E"/></svg></div><h1 class="lt">Mind Cars</h1><p class="ls">${esc(t("loginTitle"))}</p>
   <div class="seg" style="max-width:220px;margin:0 auto 22px"><button class="${L()==="th"?"on":""}" data-lg="th">ไทย</button><button class="${L()==="en"?"on":""}" data-lg="en">English</button></div>
   ${!AUTH?`<p class="hint" style="text-align:center">${esc(t("loading"))}</p>`:cfg?`
   <label class="f"><span>${esc(t("email"))}</span><input id="lg-email" type="email" autocomplete="email" inputmode="email"></label>
@@ -825,9 +1006,13 @@ function bindLogin(){
 let scrim=null;
 function openSheet(html,mount){closeSheet();scrim=document.createElement("div");scrim.className="scrim";scrim.innerHTML=`<div class="sheet" role="dialog" aria-modal="true"><div class="grab"></div>${html}</div>`;
   scrim.addEventListener("click",e=>{if(e.target===scrim)closeSheet();});document.body.appendChild(scrim);document.body.style.overflow="hidden";if(mount)mount(scrim.querySelector(".sheet"));}
-function closeSheet(){if(scrim){scrim.remove();scrim=null;document.body.style.overflow="";}}
+function closeSheet(){if(scrim){scrim.remove();scrim=null;document.body.style.overflow="";}if(renderPending){renderPending=false;render();}}
 const sheetHead=title=>`<h3>${esc(title)}<button class="iconbtn" data-close aria-label="close">${ic("x")}</button></h3>`;
 function bindClose(el){el.querySelectorAll("[data-close]").forEach(b=>b.onclick=closeSheet);}
+function makeReadonly(el,note){el.querySelectorAll("input,select,textarea,button:not([data-close])").forEach(x=>{x.disabled=true;});
+  el.querySelectorAll(".savebar,#ff-del,#sf-del,#cf-arc,#cf-del,.photo-pick,#cf-rm,.locrow,.near,.gapbox").forEach(x=>x.style.display="none");
+  el.querySelectorAll(".btns").forEach(b=>{if(!b.querySelector("button:not([disabled])"))b.style.display="none";});
+  const n=document.createElement("div");n.className="ronote";n.textContent=note;const h=el.querySelector("h3");h.insertAdjacentElement("afterend",n);}
 function armDelete(btn,fn){btn.onclick=()=>{if(btn.classList.contains("armed")){fn();}else{btn.classList.add("armed");btn.textContent=t("confirmTap");setTimeout(()=>{if(btn.isConnected){btn.classList.remove("armed");btn.textContent=t("delete");}},4000);}};}
 function toast(msg){const d=document.createElement("div");d.className="toast";d.textContent=msg;document.body.appendChild(d);setTimeout(()=>d.remove(),2400);}
 function chooser(){
@@ -881,7 +1066,7 @@ function fillForm(f){
       if(v>0&&b){$("ff-odo").value=nm==="trip"?(v-b.odo>0?String(v-b.odo):""):String(b.odo+v);}else if(nm==="trip"&&!b){}else $("ff-odo").value="";
       mode=nm;showMode();check();});
     const check=()=>{const cid=$("ff-car").value,o=odoVal(),d=$("ff-date").value;if(mode==="trip")showMode();const w=$("ff-warn");
-      const prev=S.fuel.filter(x=>x.carId===cid&&x.id!==f.id&&x.date<=d).sort((a,b)=>b.odo-a.odo)[0];
+      const prev=S.fuel.filter(x=>x.carId===cid&&x.id!==f.id&&(x.date<d||(x.date===d&&(!edit||x.odo<(f.odo||0))))).sort((a,b)=>b.odo-a.odo)[0];
       if(o&&prev&&o<=prev.odo){w.hidden=false;w.textContent=t("odoWarn",{n:fmt(prev.odo,0)});}else w.hidden=true;
       gapCheck(o);};
     const isReset=()=>$("ff-reset").getAttribute("aria-pressed")==="true";
@@ -957,6 +1142,7 @@ function fillForm(f){
       const i=S.fuel.findIndex(x=>x.id===rec.id);if(i>=0)S.fuel[i]=rec;else S.fuel.push(rec);
       closeSheet();toast(t("saved"));commit("fuel");};
     if(edit)armDelete($("ff-del"),()=>{S.fuel=S.fuel.filter(x=>x.id!==f.id);closeSheet();toast(t("deleted"));commit("fuel");});
+    if(edit&&!canEditRec(f))makeReadonly(el,t("roRec",{n:whoName(f)}));
   });
 }
 function svcForm(r){
@@ -985,15 +1171,23 @@ function svcForm(r){
       const i=S.service.findIndex(x=>x.id===rec.id);if(i>=0)S.service[i]=rec;else S.service.push(rec);
       closeSheet();toast(t("saved"));commit("service");};
     if(edit)armDelete($("sf-del"),()=>{S.service=S.service.filter(x=>x.id!==r.id);closeSheet();toast(t("deleted"));commit("service");});
+    if(edit&&!canEditRec(r))makeReadonly(el,t("roRec",{n:whoName(r)}));
   });
 }
 function resizeImage(file){return new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>{const img=new Image();img.onload=()=>{const max=720;const s=Math.min(1,max/Math.max(img.width,img.height));const c=document.createElement("canvas");c.width=Math.round(img.width*s);c.height=Math.round(img.height*s);c.getContext("2d").drawImage(img,0,0,c.width,c.height);res(c.toDataURL("image/jpeg",0.78));};img.onerror=rej;img.src=fr.result;};fr.onerror=rej;fr.readAsDataURL(file);});}
+function groupField(c,edit){
+  if(!CLOUD)return "";
+  if(edit){const g=groupOf(c);return g&&groupList().length>1?`<p class="hint" style="margin:-4px 2px 12px">${ic("users","xs")} ${esc(t("inGroup",{g:g.name}))}</p>`:"";}
+  const own=groupList().filter(g=>g.owner===MYID());if(own.length<2)return "";
+  return `<label class="f"><span>${esc(t("group"))}</span><select id="cf-group">${own.map(g=>`<option value="${esc(g.id)}">${esc(g.name)}</option>`).join("")}</select></label>`;
+}
 function carForm(c){
   const edit=!!c;c=c||{fuels:["g95"],primary:"g95"};let photo=c.photo||"";let fuels=[...(c.fuels||[])];let primary=c.primary;
   openSheet(`${sheetHead(edit?t("editCar"):t("addCar"))}
   <div class="photo-pick"><span class="thumb" id="cf-th"></span><label class="btn ghost" style="cursor:pointer">${ic("image")}<span>${esc(t("choosePhoto"))}</span><input type="file" accept="image/*" id="cf-file"></label></div>
   <button type="button" class="btn ghost" id="cf-rm" style="margin:-4px 0 14px;padding:10px">${esc(t("removePhoto"))}</button>
   <label class="f"><span>${esc(t("name"))}</span><input id="cf-name" value="${esc(c.name||"")}" placeholder="Toyota Vios"></label>
+  ${groupField(c,edit)}
   <label class="f"><span>${esc(t("plate"))}</span><input id="cf-plate" value="${esc(c.plate||"")}"></label>
   <label class="f"><span>${esc(t("fuels"))}</span></label><div class="chips" id="cf-fuels" style="flex-wrap:wrap;margin-top:-6px"></div>
   <label class="f"><span>${esc(t("primary"))}</span></label><div class="chips" id="cf-prim" style="flex-wrap:wrap;margin-top:-6px"></div>
@@ -1010,11 +1204,12 @@ function carForm(c){
     $("cf-rm").onclick=()=>{photo="";drawPhoto();};
     $("cf-save").onclick=()=>{const name=$("cf-name").value.trim();if(!name||!fuels.length){toast(t("requiredCar"));return;}
       const units=Object.assign({},c.units||{});for(const k of fuels)if(k!==primary&&!units[k])units[k]={eff:"l1000"};
-      const rec=Object.assign({},c,{id:c.id||nid(),name,plate:$("cf-plate").value.trim(),photo,fuels,primary,units,archived:!!c.archived});
+      const gsel=el.querySelector("#cf-group");const rec=Object.assign({},c,{groupId:c.groupId||(gsel?gsel.value:personalGid()),id:c.id||nid(),name,plate:$("cf-plate").value.trim(),photo,fuels,primary,units,archived:!!c.archived});
       const i=S.cars.findIndex(x=>x.id===rec.id);if(i>=0)S.cars[i]=rec;else{S.cars.push(rec);S.settings.activeCar=rec.id;}
       closeSheet();toast(t("saved"));commit("cars","settings");};
     if(edit){$("cf-arc").onclick=()=>{const x=carById(c.id);x.archived=!x.archived;closeSheet();toast(x.archived?t("archived"):t("saved"));commit("cars");};
       armDelete($("cf-del"),()=>{S.cars=S.cars.filter(x=>x.id!==c.id);S.fuel=S.fuel.filter(x=>x.carId!==c.id);S.service=S.service.filter(x=>x.carId!==c.id);closeSheet();toast(t("deleted"));commit("cars","fuel","service");});}
+    if(edit&&!canEditCar(c))makeReadonly(el,t("roCar",{g:(groupOf(c)||{}).name||""}));
   });
 }
 
@@ -1069,6 +1264,9 @@ document.addEventListener("click",e=>{
     case "mapNear":mapNear();break;
     case "mapMe":mapMe();break;
     case "st":stationSheet(+b);break;
+    case "grp":groupSheet(b);break;
+    case "newGroup":newGroupSheet();break;
+    case "joinGroup":joinSheet();break;
     case "scar":UI.sCar=b;render();break;
     case "sper":UI.sPer=b;render();break;
     case "sfuel":UI.sFuel=b;render();break;
@@ -1093,7 +1291,8 @@ document.addEventListener("click",e=>{
 });
 document.addEventListener("change",e=>{const el=e.target.closest("[data-chg]");if(!el)return;const k=el.dataset.chg,v=el.value;
   if(k==="car"){S.settings.activeCar=v;commit("settings");return;}
-  if(k==="filt")UI.filter=v;else if(k==="ffuel")UI.fuelF=v;else if(k==="scar")UI.sCar=v;else if(k==="sper")UI.sPer=v;else if(k==="sfuel")UI.sFuel=v;
+  if(k==="dname"){const nm=v.trim();if(!nm)return;S.settings.displayName=nm;commit("settings");updateMyName(nm);toast(t("saved"));return;}
+  if(k==="filt")UI.filter=v;else if(k==="ffuel")UI.fuelF=v;else if(k==="scar")UI.sCar=v;else if(k==="sper")UI.sPer=v;else if(k==="sfuel")UI.sFuel=v;else if(k==="byf")UI.byF=v;
   render();});
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{if(S.settings.theme==="auto")render();});
 render();
@@ -1115,7 +1314,7 @@ else{
     window.MC.ready({configured:true,signIn:(e,p)=>A.signInWithEmailAndPassword(auth,e,p),signUp:(e,p)=>A.createUserWithEmailAndPassword(auth,e,p),reset:e=>A.sendPasswordResetEmail(auth,e)});
     A.onAuthStateChanged(auth,u=>{
       if(u){const ref=k=>F.doc(db,"users",u.uid,"mindcars",k);
-        window.MC.signedIn({uid:u.uid,email:u.email},{get:async k=>{const s=await F.getDoc(ref(k));return s.exists()?s.data():null;},set:(k,v)=>F.setDoc(ref(k),v),signOut:()=>A.signOut(auth)});}
+        window.MC.signedIn({uid:u.uid,email:u.email},{get:async k=>{const s=await F.getDoc(ref(k));return s.exists()?s.data():null;},set:(k,v)=>F.setDoc(ref(k),v),signOut:()=>A.signOut(auth),F,db});}
       else window.MC.signedOut();
     });
   }catch(e){console.error(e);window.MC.ready({configured:false});window.MC.signedOut();}

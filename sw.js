@@ -1,5 +1,5 @@
 // Mind Cars service worker: เปิดแอปได้แม้ออฟไลน์ และดึงเวอร์ชันใหม่อัตโนมัติเมื่อออนไลน์
-const CACHE = "mindcars-v2";
+const CACHE = "mindcars-v4";
 const SHELL = ["./", "index.html", "manifest.json", "firebase-config.js", "icon-192.png", "apple-touch-icon.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
