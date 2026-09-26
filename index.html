@@ -235,6 +235,58 @@ h2.sec button{border:0;background:none;color:var(--accent);font:500 14px var(--b
 .ls{text-align:center;color:var(--ink2);margin:4px 0 22px}
 .linkbtn{border:0;background:none;color:var(--accent);font:500 15px var(--body);padding:8px}
 .btn:disabled{opacity:.6}
+.fabslot{display:flex;justify-content:center;align-items:flex-start}
+.tabs .fab{width:62px;height:62px;padding:0;margin-top:-24px;border-radius:50%;border:4px solid var(--surface);
+  background:radial-gradient(120% 120% at 30% 20%,color-mix(in srgb,var(--accent) 55%,#fff) 0%,var(--accent) 55%,color-mix(in srgb,var(--accent) 80%,#000) 100%);
+  color:#fff;display:grid;place-items:center;
+  box-shadow:0 12px 24px -8px color-mix(in srgb,var(--accent) 75%,transparent),0 4px 10px -4px rgba(10,15,30,.25),inset 0 1px 1px rgba(255,255,255,.45);
+  transition:transform .15s ease,box-shadow .15s ease}
+.tabs .fab svg{width:28px;height:28px;stroke:#fff;stroke-width:2.4}
+.tabs .fab:active{transform:scale(.93);box-shadow:0 6px 14px -6px color-mix(in srgb,var(--accent) 75%,transparent)}
+:root[data-accent="graphite"] .tabs .fab svg{stroke:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"])[data-accent="graphite"] .tabs .fab svg{stroke:#0B101A}}
+:root[data-theme="dark"][data-accent="graphite"] .tabs .fab svg{stroke:#0B101A}
+.row2>*,.row3>*{min-width:0}
+.f input,.f select{height:52px;min-height:52px;display:block;max-width:100%}
+.f input[type="date"]{-webkit-appearance:none;appearance:none;min-width:0;width:100%;text-align:left;line-height:26px}
+.f input[type="date"]::-webkit-date-and-time-value{text-align:left;margin:0}
+.f input[type="date"]::-webkit-calendar-picker-indicator{opacity:.6}
+.f select{-webkit-appearance:none;appearance:none;padding-right:40px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%238A92A4' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.mapwrap{overflow:hidden;padding:0;position:relative;z-index:0;isolation:isolate}
+#map{height:min(52vh,420px);width:100%;background:var(--surface2)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #map .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9)}}
+:root[data-theme="dark"] #map .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9)}
+.stpin{background:none;border:0}
+.pin{position:absolute;transform:translate(-50%,-100%)}
+.pin.mine{background:var(--accent);color:var(--accent-ink);font:600 12.5px var(--num);padding:4px 9px;border-radius:999px;white-space:nowrap;box-shadow:0 3px 8px rgba(10,15,30,.3);border:2px solid var(--surface)}
+.pin.mine::after{content:"";position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--accent);border-bottom:0}
+.pin.other{width:14px;height:14px;border-radius:50%;background:var(--surface);border:3px solid var(--ink3);transform:translate(-50%,-50%);box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.pin.me{width:16px;height:16px;border-radius:50%;background:#1E88FF;border:3px solid #fff;transform:translate(-50%,-50%);box-shadow:0 0 0 6px rgba(30,136,255,.25)}
+.leaflet-popup-content-wrapper{background:var(--surface);color:var(--ink);border-radius:14px}
+.leaflet-popup-tip{background:var(--surface)}
+.leaflet-popup-content{margin:12px 14px;font:14px var(--body)}
+.pop{display:flex;flex-direction:column;gap:6px;min-width:170px}
+.pop b{font-weight:600}
+.pop .chip{align-self:flex-start;margin-top:4px}
+.pl{line-height:2}
+.leaflet-container a.leaflet-popup-close-button{color:var(--ink3)}
+.acts{align-items:center}
+.hseg{display:flex;background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:3px;gap:2px}
+.hseg button{display:flex;align-items:center;gap:6px;border:0;background:none;height:36px;padding:0 12px;border-radius:9px;font:500 14px var(--body);color:var(--ink2);white-space:nowrap}
+.hseg button.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(10,15,30,.1)}
+.fbar{display:flex;gap:8px;margin:0 0 12px}
+.psel{position:relative;flex:1 1 0;min-width:0;display:flex;align-items:center;height:40px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:0 34px 0 12px;gap:8px;color:var(--ink2)}
+.psel::after{content:"";position:absolute;right:14px;top:50%;width:7px;height:7px;border-right:1.8px solid currentColor;border-bottom:1.8px solid currentColor;transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.psel select{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:16px}
+.psel .pv{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 14px var(--body);color:var(--ink)}
+.psel.on{border-color:color-mix(in srgb,var(--accent) 55%,transparent);background:color-mix(in srgb,var(--accent) 10%,var(--surface));color:var(--accent)}
+.psel.on .pv{color:var(--accent)}
+.psel.sm{flex:0 1 auto;height:34px;max-width:55%;padding:0 30px 0 10px}
+.psel.sm::after{right:12px}
+.psel.sm .pv{font-size:13px}
+.cap2{align-items:center;gap:10px}
+.cap2>div{min-width:0;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.unitbtn{border:0;background:none;padding:0;font:500 12.5px var(--num);color:var(--accent)}
 .warnline{font-size:13px;color:var(--warn);margin:-4px 2px 10px}
 .toggle{display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:12px;width:100%;text-align:left}
 .toggle .sw2{width:46px;height:28px;border-radius:14px;background:var(--line);position:relative;transition:background .15s;flex:none}
@@ -261,7 +313,7 @@ h2.sec button{border:0;background:none;color:var(--accent);font:500 14px var(--b
 /* ---------- i18n ---------- */
 const T={
 th:{home:"ภาพรวม",fuel:"เติม",service:"ซ่อมบำรุง",stats:"สถิติ",more:"รถและตั้งค่า",
-addFill:"บันทึกการเติม",addFillSub:"น้ำมัน แก๊ส LPG, NGV หรือชาร์จรถไฟฟ้า",addService:"บันทึกซ่อมบำรุง",addServiceSub:"เปลี่ยนน้ำมันเครื่อง ซ่อม ภาษี ประกัน",addCar:"เพิ่มรถ",editCar:"แก้ไขรถ",
+addFill:"บันทึกการเติม",addFillSub:"น้ำมัน แก๊ส LPG, NGV หรือชาร์จรถไฟฟ้า",addService:"ซ่อมบำรุง / ค่าใช้จ่าย",addServiceSub:"เปลี่ยนน้ำมันเครื่อง ซ่อม ภาษี ประกัน",addCar:"เพิ่มรถ",editCar:"แก้ไขรถ",
 editFill:"แก้ไขการเติม",editService:"แก้ไขซ่อมบำรุง",car:"รถ",cars:"รถของฉัน",date:"วันที่",odo:"เลขไมล์",fuelType:"เชื้อเพลิง",qty:"ปริมาณ",price:"ราคา/หน่วย",total:"ยอดเงิน",
 full:"เติมเต็มถัง",fullSub:"ปิดไว้ถ้าเติมไม่เต็ม แอปจะสะสมไว้คำนวณครั้งถัดไป",partial:"ไม่เต็มถัง",station:"ปั๊ม / สถานที่",note:"หมายเหตุ",save:"บันทึก",delete:"ลบ",confirmTap:"แตะอีกครั้งเพื่อยืนยันการลบ",
 archive:"เก็บเข้าคลัง",unarchive:"นำกลับมาใช้",archived:"เก็บเข้าคลังแล้ว",name:"ชื่อรถ",plate:"ทะเบียน",photo:"รูปรถ",choosePhoto:"เลือกรูป",removePhoto:"เอารูปออก",
@@ -280,9 +332,9 @@ firstFill:"ครั้งแรกของเชื้อเพลิงนี
 noData:"ยังไม่มีข้อมูลในช่วงนี้",allCars:"ทุกคัน",saved:"บันทึกแล้ว",deleted:"ลบแล้ว",required:"กรอกเลขไมล์ ปริมาณ และราคาหรือยอดเงิน",requiredCar:"ใส่ชื่อรถและเลือกเชื้อเพลิงอย่างน้อย 1 ชนิด",
 requiredSvc:"เลือกรายการและใส่เลขไมล์",period:"ช่วง",fills:"ครั้ง",current:"ปัจจุบัน",lastN:"{n} ครั้งล่าสุด",noEffYet:"ต้องเติมเต็มถังอย่างน้อย 2 ครั้งจึงจะคำนวณได้",
 deleteCarWarn:"ลบรถคันนี้พร้อมบันทึกทั้งหมดของรถ",secondary:"เชื้อเพลิงเสริม",km:"กม.",tapToSwitch:"แตะเพื่อสลับหน่วย",activeCars:"รถที่ใช้งาน",archivedCars:"ในคลัง",
-remindNote:"แอปจะแสดงรายการที่ถึงรอบในหน้าภาพรวมทุกครั้งที่เปิด",unitNum:"หน่วยต่อรถ",autoCalc:"คำนวณ",locate:"ใช้ตำแหน่งปัจจุบัน",locating:"กำลังหาตำแหน่ง…",locDenied:"ขอตำแหน่งไม่ได้ในหน้านี้ พิมพ์ชื่อปั๊มเองได้ ครั้งหน้าแอปจะจำไว้",matched:"ตรงกับปั๊มที่เคยเติม ห่าง {n} ม.",noNearby:"ไม่พบปั๊มใกล้ๆ พิมพ์ชื่อปั๊มเองได้",known:"เคยเติม",m:"ม.",odoMode:"เลขไมล์",lastPrice:"ราคาครั้งก่อน",account:"บัญชี",localMode:"ใช้แบบในเครื่องนี้ (ไม่ได้ล็อกอิน)",signOut:"ออกจากระบบ",signInSync:"ล็อกอินเพื่อซิงก์ข้อมูล",loginTitle:"บันทึกทุกเรื่องของรถ ในแอปเดียว",email:"อีเมล",password:"รหัสผ่าน",signIn:"เข้าสู่ระบบ",signUp:"สร้างบัญชีใหม่",forgot:"ลืมรหัสผ่าน",useLocal:"ใช้แบบไม่ล็อกอิน (เก็บในเครื่องนี้)",resetSent:"ส่งลิงก์ตั้งรหัสผ่านใหม่ไปที่อีเมลแล้ว",needEmail:"ใส่อีเมลก่อน",notConfigured:"ยังไม่ได้ตั้งค่า Firebase (ไฟล์ firebase-config.js) ใช้แบบในเครื่องไปก่อนได้",loading:"กำลังเชื่อมต่อ…",haveAcc:"มีบัญชีแล้ว? เข้าสู่ระบบ",noAcc:"ยังไม่มีบัญชี? สร้างบัญชีใหม่",fromLine:"นับจากเติมเต็มถังครั้งก่อนที่ {o} กม. ({d})",allFuels:"ทุกเชื้อเพลิง",fullEv:"ชาร์จเต็ม",fullEvSub:"ปิดไว้ถ้าชาร์จไม่เต็ม แอปจะสะสมไว้คำนวณครั้งถัดไป",stationEv:"สถานีชาร์จ / สถานที่ (เช่น บ้าน)",addCharge:"บันทึกการชาร์จ",editCharge:"แก้ไขการชาร์จ",resetTitle:"เริ่มนับใหม่จากครั้งนี้",resetSub:"ใช้เมื่อมีการเติมที่ไม่ได้จด เช่น คนอื่นในบ้านขับไปเติม ข้อมูลเก่าไม่เปลี่ยน อัตราสิ้นเปลืองจะเริ่มนับจากครั้งนี้",resetTag:"เริ่มนับใหม่",gapWarn:"ระยะจากการเติมเต็มถังครั้งก่อน {n} กม. มากผิดปกติ อาจมีการเติมที่ไม่ได้บันทึก",gapBtn:"เริ่มนับใหม่จากครั้งนี้",resetOdo:"เริ่มนับใหม่ต้องใช้เลขไมล์จริง สลับเป็นโหมดเลขไมล์ให้แล้ว",tripMode:"ระยะทริป",tripLabel:"ระยะทริป (กม.)",tripBase:"นับจากเติมเต็มถังครั้งก่อน {d} ที่ {o} กม.",tripResult:"เลขไมล์ที่จะบันทึก {r} กม.",tripNoBase:"ยังไม่มีการเติมเต็มถังครั้งก่อนของเชื้อเพลิงนี้ ครั้งแรกให้ใส่เลขไมล์"},
+remindNote:"แอปจะแสดงรายการที่ถึงรอบในหน้าภาพรวมทุกครั้งที่เปิด",unitNum:"หน่วยต่อรถ",autoCalc:"คำนวณ",locate:"ใช้ตำแหน่งปัจจุบัน",locating:"กำลังหาตำแหน่ง…",locDenied:"ขอตำแหน่งไม่ได้ในหน้านี้ พิมพ์ชื่อปั๊มเองได้ ครั้งหน้าแอปจะจำไว้",matched:"ตรงกับปั๊มที่เคยเติม ห่าง {n} ม.",noNearby:"ไม่พบปั๊มใกล้ๆ พิมพ์ชื่อปั๊มเองได้",known:"เคยเติม",m:"ม.",odoMode:"เลขไมล์",lastPrice:"ราคาครั้งก่อน",perWeek:"รายสัปดาห์",perMonth2:"รายเดือน",perYear:"รายปี",historyShort:"ประวัติ",mapShort:"แผนที่",history:"ประวัติการเติม",stationMap:"แผนที่ปั๊ม",nearHere:"ค้นหาปั๊มในพื้นที่นี้",myLoc:"ตำแหน่งของฉัน",myStations:"ปั๊มที่เคยเติม",visits:"เติม {n} ครั้ง",lastVisit:"ล่าสุด",noCoords:"ยังไม่มีพิกัด",noCoordsHint:"ปั๊มนี้ยังไม่มีพิกัด เลื่อนแผนที่ให้จุดกึ่งกลางอยู่ที่ปั๊ม แล้วกดปุ่มด้านล่าง",setCoords:"ปักพิกัดที่กึ่งกลางแผนที่",showOnMap:"ดูบนแผนที่",stDelWarn:"เอาชื่อปั๊มออกจากบันทึกการเติม {n} ครั้ง ข้อมูลการเติมยังอยู่ครบ",neverFilled:"ยังไม่เคยเติมที่นี่",searching:"กำลังค้นหาปั๊ม…",found:"พบ {n} ปั๊มในพื้นที่นี้",zoomIn:"ซูมเข้าให้ใกล้ขึ้นแล้วค้นหาอีกครั้ง",stNone:"ยังไม่มีปั๊มที่บันทึกไว้ ใส่ชื่อปั๊มตอนบันทึกการเติม แล้วปั๊มจะขึ้นที่นี่",stationName:"ชื่อปั๊ม",manage:"แก้ไข / ลบ",mapFail:"โหลดแผนที่ไม่สำเร็จ ตรวจอินเทอร์เน็ตแล้วลองใหม่",addCarSub:"เพิ่มรถคันใหม่ในบ้าน รวมถึงรถไฟฟ้า",account:"บัญชี",localMode:"ใช้แบบในเครื่องนี้ (ไม่ได้ล็อกอิน)",signOut:"ออกจากระบบ",signInSync:"ล็อกอินเพื่อซิงก์ข้อมูล",loginTitle:"บันทึกทุกเรื่องของรถ ในแอปเดียว",email:"อีเมล",password:"รหัสผ่าน",signIn:"เข้าสู่ระบบ",signUp:"สร้างบัญชีใหม่",forgot:"ลืมรหัสผ่าน",useLocal:"ใช้แบบไม่ล็อกอิน (เก็บในเครื่องนี้)",resetSent:"ส่งลิงก์ตั้งรหัสผ่านใหม่ไปที่อีเมลแล้ว",needEmail:"ใส่อีเมลก่อน",notConfigured:"ยังไม่ได้ตั้งค่า Firebase (ไฟล์ firebase-config.js) ใช้แบบในเครื่องไปก่อนได้",loading:"กำลังเชื่อมต่อ…",haveAcc:"มีบัญชีแล้ว? เข้าสู่ระบบ",noAcc:"ยังไม่มีบัญชี? สร้างบัญชีใหม่",fromLine:"นับจากเติมเต็มถังครั้งก่อนที่ {o} กม. ({d})",allFuels:"ทุกเชื้อเพลิง",fullEv:"ชาร์จเต็ม",fullEvSub:"ปิดไว้ถ้าชาร์จไม่เต็ม แอปจะสะสมไว้คำนวณครั้งถัดไป",stationEv:"สถานีชาร์จ / สถานที่ (เช่น บ้าน)",addCharge:"บันทึกการชาร์จ",editCharge:"แก้ไขการชาร์จ",resetTitle:"เริ่มนับใหม่จากครั้งนี้",resetSub:"ใช้เมื่อมีการเติมที่ไม่ได้จด เช่น คนอื่นในบ้านขับไปเติม ข้อมูลเก่าไม่เปลี่ยน อัตราสิ้นเปลืองจะเริ่มนับจากครั้งนี้",resetTag:"เริ่มนับใหม่",gapWarn:"ระยะจากการเติมเต็มถังครั้งก่อน {n} กม. มากผิดปกติ อาจมีการเติมที่ไม่ได้บันทึก",gapBtn:"เริ่มนับใหม่จากครั้งนี้",resetOdo:"เริ่มนับใหม่ต้องใช้เลขไมล์จริง สลับเป็นโหมดเลขไมล์ให้แล้ว",tripMode:"ระยะทริป",tripLabel:"ระยะทริป (กม.)",tripBase:"นับจากเติมเต็มถังครั้งก่อน {d} ที่ {o} กม.",tripResult:"เลขไมล์ที่จะบันทึก {r} กม.",tripNoBase:"ยังไม่มีการเติมเต็มถังครั้งก่อนของเชื้อเพลิงนี้ ครั้งแรกให้ใส่เลขไมล์"},
 en:{home:"Overview",fuel:"Fuel",service:"Service",stats:"Stats",more:"Cars & settings",
-addFill:"Log a fill-up",addFillSub:"Petrol, diesel, LPG, NGV or EV charging",addService:"Log service",addServiceSub:"Oil change, repairs, tax, insurance",addCar:"Add car",editCar:"Edit car",
+addFill:"Log a fill-up",addFillSub:"Petrol, diesel, LPG, NGV or EV charging",addService:"Service & expenses",addServiceSub:"Oil change, repairs, tax, insurance",addCar:"Add car",editCar:"Edit car",
 editFill:"Edit fill-up",editService:"Edit service",car:"Car",cars:"My cars",date:"Date",odo:"Odometer",fuelType:"Fuel",qty:"Amount",price:"Price/unit",total:"Total paid",
 full:"Filled to full",fullSub:"Turn off for a partial fill; it counts toward the next full one",partial:"Partial",station:"Station / place",note:"Note",save:"Save",delete:"Delete",confirmTap:"Tap again to delete",
 archive:"Archive",unarchive:"Restore",archived:"Archived",name:"Car name",plate:"Plate",photo:"Photo",choosePhoto:"Choose photo",removePhoto:"Remove photo",
@@ -301,7 +353,7 @@ firstFill:"First fill for this fuel; nothing to compare yet",lastFill:"Last fill
 noData:"No data for this period yet",allCars:"All cars",saved:"Saved",deleted:"Deleted",required:"Enter odometer, amount and price or total",requiredCar:"Enter a name and pick at least one fuel",
 requiredSvc:"Pick an item and enter the odometer",period:"Period",fills:"fills",current:"Current",lastN:"last {n} fills",noEffYet:"Fill to full at least twice to calculate",
 deleteCarWarn:"Deletes this car and all of its records",secondary:"Secondary fuel",km:"km",tapToSwitch:"Tap to switch unit",activeCars:"Active",archivedCars:"Archived",
-remindNote:"Due items appear on the overview each time you open the app",unitNum:"per car",autoCalc:"auto",locate:"Use current location",locating:"Finding your location…",locDenied:"Location isn't available here. Type the station name; it will be remembered next time",matched:"Matches a station you've used, {n} m away",noNearby:"No stations found nearby. Type the name instead",known:"used before",m:"m",odoMode:"Odometer",lastPrice:"last price",account:"Account",localMode:"Using this device only (not signed in)",signOut:"Sign out",signInSync:"Sign in to sync",loginTitle:"Everything about your cars, in one app",email:"Email",password:"Password",signIn:"Sign in",signUp:"Create account",forgot:"Forgot password",useLocal:"Use without an account (this device only)",resetSent:"Password reset link sent to your email",needEmail:"Enter your email first",notConfigured:"Firebase isn't set up yet (firebase-config.js). You can use this device only for now",loading:"Connecting…",haveAcc:"Have an account? Sign in",noAcc:"No account? Create one",fromLine:"Counted from the previous full fill at {o} km ({d})",allFuels:"All fuels",fullEv:"Charged to full",fullEvSub:"Turn off for a partial charge; it counts toward the next full one",stationEv:"Charger / place (e.g. home)",addCharge:"Log a charge",editCharge:"Edit charge",resetTitle:"Start a new count here",resetSub:"Use when someone filled up without logging it. Older records stay as they are; consumption is counted from this fill",resetTag:"New count",gapWarn:"{n} km since the last full fill is unusually far. A fill-up may be missing",gapBtn:"Start a new count here",resetOdo:"A new count needs the real odometer, so odometer mode is on",tripMode:"Trip",tripLabel:"Trip distance (km)",tripBase:"Counted from the last full fill on {d} at {o} km",tripResult:"Odometer to be saved: {r} km",tripNoBase:"No earlier full fill for this fuel yet. Enter the odometer the first time"}
+remindNote:"Due items appear on the overview each time you open the app",unitNum:"per car",autoCalc:"auto",locate:"Use current location",locating:"Finding your location…",locDenied:"Location isn't available here. Type the station name; it will be remembered next time",matched:"Matches a station you've used, {n} m away",noNearby:"No stations found nearby. Type the name instead",known:"used before",m:"m",odoMode:"Odometer",lastPrice:"last price",perWeek:"Weekly",perMonth2:"Monthly",perYear:"Yearly",historyShort:"History",mapShort:"Map",history:"History",stationMap:"Station map",nearHere:"Find stations here",myLoc:"My location",myStations:"Stations you've used",visits:"{n} fills",lastVisit:"Last",noCoords:"No location",noCoordsHint:"This station has no location yet. Move the map so its centre is on the station, then tap below",setCoords:"Pin at map centre",showOnMap:"Show on map",stDelWarn:"Removes this name from {n} fill-ups. The fill-up records stay",neverFilled:"Not used yet",searching:"Searching for stations…",found:"Found {n} stations here",zoomIn:"Zoom in closer and search again",stNone:"No stations yet. Add a station name when logging a fill-up and it will appear here",stationName:"Station name",manage:"Edit / delete",mapFail:"Couldn't load the map. Check your connection and try again",addCarSub:"Add another car, including EVs",account:"Account",localMode:"Using this device only (not signed in)",signOut:"Sign out",signInSync:"Sign in to sync",loginTitle:"Everything about your cars, in one app",email:"Email",password:"Password",signIn:"Sign in",signUp:"Create account",forgot:"Forgot password",useLocal:"Use without an account (this device only)",resetSent:"Password reset link sent to your email",needEmail:"Enter your email first",notConfigured:"Firebase isn't set up yet (firebase-config.js). You can use this device only for now",loading:"Connecting…",haveAcc:"Have an account? Sign in",noAcc:"No account? Create one",fromLine:"Counted from the previous full fill at {o} km ({d})",allFuels:"All fuels",fullEv:"Charged to full",fullEvSub:"Turn off for a partial charge; it counts toward the next full one",stationEv:"Charger / place (e.g. home)",addCharge:"Log a charge",editCharge:"Edit charge",resetTitle:"Start a new count here",resetSub:"Use when someone filled up without logging it. Older records stay as they are; consumption is counted from this fill",resetTag:"New count",gapWarn:"{n} km since the last full fill is unusually far. A fill-up may be missing",gapBtn:"Start a new count here",resetOdo:"A new count needs the real odometer, so odometer mode is on",tripMode:"Trip",tripLabel:"Trip distance (km)",tripBase:"Counted from the last full fill on {d} at {o} km",tripResult:"Odometer to be saved: {r} km",tripNoBase:"No earlier full fill for this fuel yet. Enter the odometer the first time"}
 };
 const FUELS={lpg:{th:"LPG",en:"LPG",u:"L"},ngv:{th:"NGV",en:"NGV",u:"kg"},g95:{th:"แก๊สโซฮอล์ 95",en:"Gasohol 95",u:"L"},g91:{th:"แก๊สโซฮอล์ 91",en:"Gasohol 91",u:"L"},
 e20:{th:"E20",en:"E20",u:"L"},e85:{th:"E85",en:"E85",u:"L"},b95:{th:"เบนซิน 95",en:"Benzene 95",u:"L"},diesel:{th:"ดีเซล",en:"Diesel",u:"L"},ev:{th:"ไฟฟ้า (EV)",en:"Electric (EV)",u:"kWh"},dieselp:{th:"ดีเซลพรีเมียม",en:"Premium diesel",u:"L"}};
@@ -322,7 +374,7 @@ wrench:'<path d="M14.5 6.5a4 4 0 0 0 5 5L12 19a2.1 2.1 0 0 1-3-3l7.5-7.5"/><path
 chart:'<path d="M4 20h16"/><path d="M6.5 16.5v-4"/><path d="M11 16.5V8"/><path d="M15.5 16.5v-6"/><path d="M20 16.5V5"/>',
 car:'<path d="M4 16.5V12l2-5h12l2 5v4.5"/><path d="M3 12h18"/><rect x="3" y="12" width="18" height="5" rx="1.5"/><circle cx="7.5" cy="14.5" r=".6"/><circle cx="16.5" cy="14.5" r=".6"/><path d="M5.5 17v2M18.5 17v2"/>',
 plus:'<path d="M12 5v14M5 12h14"/>',x:'<path d="M6 6l12 12M18 6 6 18"/>',pin:'<path d="M12 21s6-5.5 6-10.5a6 6 0 0 0-12 0C6 15.5 12 21 12 21z"/><circle cx="12" cy="10.5" r="2"/>',
-download:'<path d="M12 4v11"/><path d="m7.5 10.5 4.5 4.5 4.5-4.5"/><path d="M5 20h14"/>',chev:'<path d="m9 6 6 6-6 6"/>',image:'<rect x="3.5" y="5" width="17" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="m4 17 5-4.5 4 3.5 3-2.5 4 3.5"/>'};
+download:'<path d="M12 4v11"/><path d="m7.5 10.5 4.5 4.5 4.5-4.5"/><path d="M5 20h14"/>',chev:'<path d="m9 6 6 6-6 6"/>',calendar:'<rect x="4" y="5.5" width="16" height="14.5" rx="2"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/>',map:'<path d="M9 4 3.5 6v14L9 18l6 2 5.5-2V4L15 6 9 4z"/><path d="M9 4v14M15 6v14"/>',list:'<path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r=".8"/><circle cx="4" cy="12" r=".8"/><circle cx="4" cy="18" r=".8"/>',image:'<rect x="3.5" y="5" width="17" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="m4 17 5-4.5 4 3.5 3-2.5 4 3.5"/>'};
 const ic=(n,c)=>`<svg class="i${c?" "+c:""}" viewBox="0 0 24 24" aria-hidden="true">${P[n]}</svg>`;
 
 /* ---------- state ---------- */
@@ -459,10 +511,10 @@ function render(){
   if(!USER){app.innerHTML=vLogin();bindLogin();return;}
   const views={home:vHome,fuel:vFuel,service:vService,stats:vStats,more:vMore};
   const titles={home:"Mind Cars",fuel:t("fuel"),service:t("service"),stats:t("stats"),more:t("more")};
-  const addAct={home:"add",fuel:"addFill",service:"addSvc",stats:"add",more:"addCar"}[UI.tab];
-  const canAdd=UI.tab==="more"||activeCars().length>0;
-  app.innerHTML=`<div class="wrap"><header class="top"><h1>${esc(titles[UI.tab])}</h1><div class="acts">${canAdd?`<button class="iconbtn primary" data-act="${addAct}" aria-label="${esc(t("save"))}">${ic("plus")}</button>`:""}</div></header>${views[UI.tab]()}</div>
-  <nav class="tabs"><div class="in">${[["home","home"],["fuel","fuel"],["service","wrench"],["stats","chart"],["more","car"]].map(([k,i])=>`<button class="${UI.tab===k?"on":""}" data-act="tab:${k}" aria-current="${UI.tab===k?"page":"false"}">${ic(i)}<span>${esc(k==="more"?t("cars"):t(k))}</span></button>`).join("")}</div></nav>`;
+  const tabBtn=([k,i])=>k==="add"?`<div class="fabslot"><button class="fab" data-act="add" aria-label="${esc(t("addFill"))}">${ic("plus")}</button></div>`:`<button class="${UI.tab===k?"on":""}" data-act="tab:${k}" aria-current="${UI.tab===k?"page":"false"}">${ic(i)}<span>${esc(t(k))}</span></button>`;
+  app.innerHTML=`<div class="wrap"><header class="top"><h1>${esc(titles[UI.tab])}</h1><div class="acts">${UI.tab==="fuel"&&activeCars().length?`<div class="hseg" role="tablist"><button class="${UI.fuelView!=="map"?"on":""}" data-act="fview:list" aria-label="${esc(t("history"))}">${ic("list","sm")}<span>${esc(t("historyShort"))}</span></button><button class="${UI.fuelView==="map"?"on":""}" data-act="fview:map" aria-label="${esc(t("stationMap"))}">${ic("map","sm")}<span>${esc(t("mapShort"))}</span></button></div>`:""}<button class="iconbtn ${UI.tab==="more"?"primary":""}" data-act="tab:more" aria-label="${esc(t("more"))}">${ic("car")}</button></div></header>${views[UI.tab]()}</div>
+  <nav class="tabs"><div class="in">${[["home","home"],["fuel","fuel"],["add"],["service","wrench"],["stats","chart"]].map(tabBtn).join("")}</div></nav>`;
+  if(UI.tab==="fuel"&&UI.fuelView==="map")mountMap();
 }
 function emptyCars(){
   return `<div class="panel empty">${ic("car")}<h3>${esc(t("noCars"))}</h3><p>${esc(t("noCarsHint"))}</p><div class="btns"><button class="btn" data-act="addCar">${ic("plus")}${esc(t("addCar"))}</button><button class="btn ghost" data-act="demo">${esc(t("demo"))}</button></div></div>`;
@@ -501,7 +553,7 @@ function vHome(){
   const rems=reminders(car.id).filter(x=>x.status!=="ok").slice(0,4);
   const recent=[...S.fuel.filter(f=>f.carId===car.id).map(f=>({k:"f",x:f})),...S.service.filter(r=>r.carId===car.id).map(r=>({k:"s",x:r}))].sort((a,b)=>b.x.date.localeCompare(a.x.date)||b.x.odo-a.x.odo).slice(0,3);
   const map=segMap();
-  return `${carChips(car.id,"car",false)}
+  return `${activeCars().length>1?`<div class="fbar">${psel("car","car",activeCars().map(c=>[c.id,c.name]),car.id)}</div>`:""}
   <section class="panel hero"><div class="ph ${car.photo?"":"empty"}" ${photo}>${car.photo?"":`<div class="mono-big">${monogram(car)}</div>`}<div class="id"><div><b>${esc(car.name)}</b><small>${esc(car.plate||"")}</small></div><div class="odo num">${fmt(odo,0)} ${esc(t("km"))}<small>${esc(t("odo"))}</small></div></div></div>${read}${trio}</section>
   ${sec?`<h2 class="sec">${esc(t("secondary"))}</h2>${sec}`:""}
   ${rems.length?`<h2 class="sec">${esc(t("reminders"))}<button data-act="tab:service">${esc(t("seeAll"))}</button></h2><div class="panel">${rems.map(remRow).join("")}</div>`:""}
@@ -527,13 +579,28 @@ function svcCard(r,showCar){
   return `<button class="entry" data-act="editSvc:${r.id}"><div class="e-top"><div><div class="e-date">${esc(fdate(r.date))}${showCar&&car?" · "+esc(car.name):""}</div><div class="e-amt" style="font:600 17px var(--body)">${esc(itemName(r))}</div></div><div class="e-right"><div class="e-odo num">${r.odo?fmt(r.odo,0)+" "+esc(t("km")):""}</div><div class="num" style="font-weight:600;margin-top:2px">฿${fmt(r.cost||0,0)}</div></div></div>
   <div class="e-mid"><span class="tag">${esc(r.by==="shop"?t("shop"):t("self"))}</span>${r.shop?`<span>${esc(r.shop)}</span>`:""}</div>${r.note?`<div class="e-st">${esc(r.note)}</div>`:""}</button>`;
 }
+function psel(key,icon,opts,cur,allVal,cls){
+  const o=opts.find(x=>x[0]===cur)||opts[0];const on=allVal!==undefined&&o[0]!==allVal;
+  return `<label class="psel ${on?"on":""} ${cls||""}">${ic(icon,"sm")}<span class="pv">${esc(o[1])}</span><select data-chg="${key}" aria-label="${esc(o[1])}">${opts.map(x=>`<option value="${esc(x[0])}" ${x[0]===o[0]?"selected":""}>${esc(x[1])}</option>`).join("")}</select></label>`;
+}
+function filterBar(fset){
+  const cars=activeCars();const showCar=cars.length>1,showFuel=fset&&fset.length>1;
+  if(!showCar&&!showFuel)return "";
+  const car=showCar?psel("filt","car",[["all",t("allCars")],...cars.map(c=>[c.id,c.name])],UI.filter,"all"):"";
+  const fu=showFuel?psel("ffuel","fuel",[["all",t("allFuels")],...fset.map(k=>[k,fuelName(k)])],UI.fuelF,"all"):"";
+  return `<div class="fbar">${car}${fu}</div>`;
+}
 function filterIds(){const a=activeCars();if(UI.filter!=="all"&&a.some(c=>c.id===UI.filter))return [UI.filter];return a.map(c=>c.id);}
 function vFuel(){
   if(!activeCars().length)return emptyCars();
+  if(UI.fuelView==="map")return vStations();
+  return vFuelList();
+}
+function vFuelList(){
   const ids=filterIds();const all=S.fuel.filter(f=>ids.includes(f.carId));
   const fset=[...new Set(all.map(f=>f.fuel))];if(!fset.includes(UI.fuelF))UI.fuelF="all";
   const list=all.filter(f=>UI.fuelF==="all"||f.fuel===UI.fuelF).sort((a,b)=>b.date.localeCompare(a.date)||b.odo-a.odo);
-  const head=carChips(UI.filter,"filt",true)+(fset.length>1?`<div class="chips sub"><button class="chip ${UI.fuelF==="all"?"on":""}" data-act="ffuel:all">${esc(t("allFuels"))}</button>${fset.map(k=>`<button class="chip ${UI.fuelF===k?"on":""}" data-act="ffuel:${k}">${esc(fuelName(k))}</button>`).join("")}</div>`:"");
+  const head=filterBar(fset);
   if(!list.length)return head+`<div class="panel empty"><h3>${esc(t("noFills"))}</h3><p>${esc(t("noFillsHint"))}</p><button class="btn" data-act="addFill">${ic("plus")}${esc(t("addFill"))}</button></div>`;
   const map=segMap();let html="",m="";const multi=ids.length>1;
   for(const f of list){const mk=f.date.slice(0,7);if(mk!==m){m=mk;const tot=list.filter(x=>x.date.slice(0,7)===mk).reduce((a,x)=>a+(+x.total||0),0);html+=`<div class="month-h">${esc(perLabel(mk,"month",true))} · <span class="num">฿${fmt(tot,0)}</span></div>`;}html+=fillCard(f,map,multi);}
@@ -541,7 +608,7 @@ function vFuel(){
 }
 function vService(){
   if(!activeCars().length)return emptyCars();
-  const ids=filterIds();const head=carChips(UI.filter,"filt",true);
+  const ids=filterIds();const head=filterBar(null);
   const rems=ids.flatMap(id=>reminders(id)).sort((a,b)=>a.score-b.score);
   const list=S.service.filter(r=>ids.includes(r.carId)).sort((a,b)=>b.date.localeCompare(a.date)||b.odo-a.odo);
   if(!list.length)return head+`<div class="panel empty"><h3>${esc(t("noService"))}</h3><p>${esc(t("noServiceHint"))}</p><button class="btn" data-act="addSvc">${ic("plus")}${esc(t("addService"))}</button></div>`;
@@ -572,17 +639,17 @@ function vStats(){
   if(UI.sCar!=="all"&&!cars.some(c=>c.id===UI.sCar))UI.sCar=(carSel()||cars[0]).id;
   const ids=UI.sCar==="all"?cars.map(c=>c.id):[UI.sCar];const car=UI.sCar==="all"?null:carById(UI.sCar);
   const per=UI.sPer;
-  let html=(cars.length>1?carChips(UI.sCar,"scar",true):"")+`<div class="seg" role="tablist">${["week","month","year"].map(p=>`<button class="${per===p?"on":""}" data-act="sper:${p}">${esc(t(p))}</button>`).join("")}</div>`;
+  let html=`<div class="fbar">${cars.length>1?psel("scar","car",[["all",t("allCars")],...cars.map(c=>[c.id,c.name])],UI.sCar,"all"):""}${psel("sper","calendar",[["week",t("perWeek")],["month",t("perMonth2")],["year",t("perYear")]],per)}</div>`;
   const y=todayISO().slice(0,4);const ya=aggregate(ids,"year").find(o=>o.key===y)||{fuel:0,svc:0,d:0};const yt=ya.fuel+ya.svc;
   html+=`<section class="panel year"><div><small>${esc(t("thisYear",{y:L()==="th"?+y+543:y}))} · ${esc(t("totalCost"))}</small><b>฿${fmt(yt,0)}</b></div><div><small>${esc(t("distance"))}</small><b>${fmt(ya.d,0)}</b> <small style="display:inline">${esc(t("km"))}</small></div><div><small>${esc(t("fuelCost"))}</small><b>฿${fmt(ya.fuel,0)}</b></div><div><small>${esc(t("serviceCost"))}</small><b>฿${fmt(ya.svc,0)}</b></div></section>`;
   if(car){
     if(!car.fuels.includes(UI.sFuel))UI.sFuel=car.primary;const fu=UI.sFuel;
-    if(car.fuels.length>1)html+=`<div class="chips" style="margin-top:14px">${car.fuels.map(f=>`<button class="chip ${fu===f?"on":""}" data-act="sfuel:${f}">${esc(fuelName(f))}</button>`).join("")}</div>`;
+    const fsel=car.fuels.length>1?psel("sfuel","fuel",car.fuels.map(f=>[f,fuelName(f)]),fu,undefined,"sm"):`<span class="muted" style="font-size:13px">${esc(fuelName(fu))}</span>`;
     const sg=segments(car.id,fu).slice(-30);
     if(sg.length>=2){
       const uk=unitOf(car,fu,"eff");const u=EFF[uk];const vals=sg.map(s=>u.f(s.d,s.q));const sd=sg.reduce((a,s)=>a+s.d,0),sq=sg.reduce((a,s)=>a+s.q,0);const avg=u.f(sd,sq);
-      html+=`<section class="panel chart" style="margin-top:${car.fuels.length>1?0:14}px"><div class="cap"><b>${esc(t("efficiency"))} · ${esc(fuelName(fu))}</b><button class="costline num" style="margin:0;font-size:13px" data-act="cyc:eff:${car.id}:${fu}">${esc(u.lab(fuelUnit(fu)))}</button></div>${lineChart(vals,sg.map(s=>fdate(s.date,{day:"numeric",month:"short"})),avg,u.dp>1?1:u.dp)}<div class="legend"><span>${esc(t("avgOf",{n:sg.length}))}: <b class="num">${fmt(avg,u.dp)}</b></span></div></section>`;
-    }else html+=`<section class="panel chart" style="margin-top:14px"><div class="cap"><b>${esc(t("efficiency"))} · ${esc(fuelName(fu))}</b></div><p class="hint">${esc(t("noEffYet"))}</p></section>`;
+      html+=`<section class="panel chart" style="margin-top:14px"><div class="cap cap2"><div><b>${esc(t("efficiency"))}</b><button class="unitbtn num" data-act="cyc:eff:${car.id}:${fu}">${esc(u.lab(fuelUnit(fu)))}</button></div>${fsel}</div>${lineChart(vals,sg.map(s=>fdate(s.date,{day:"numeric",month:"short"})),avg,u.dp>1?1:u.dp)}<div class="legend"><span>${esc(t("avgOf",{n:sg.length}))}: <b class="num">${fmt(avg,u.dp)}</b></span></div></section>`;
+    }else html+=`<section class="panel chart" style="margin-top:14px"><div class="cap cap2"><div><b>${esc(t("efficiency"))}</b></div>${fsel}</div><p class="hint">${esc(t("noEffYet"))}</p></section>`;
   }
   const rows=aggregate(ids,per);const lastRows=rows.slice(-12);
   if(!rows.length)return html+`<div class="panel empty" style="margin-top:14px"><p>${esc(t("noData"))}</p></div>`;
@@ -597,7 +664,7 @@ function vMore(){
   const a=activeCars(),ar=S.cars.filter(c=>c.archived);const st=S.settings;
   const row=c=>`<button class="carrow" data-act="editCar:${c.id}"><span class="thumb" style="${c.photo?`background-image:url('${c.photo}')`:""}">${c.photo?"":monogram(c)}</span><span class="t"><b>${esc(c.name)}</b><small>${esc([c.plate,(c.fuels||[]).map(fuelName).join(" + ")].filter(Boolean).join(" · "))}</small></span>${ic("chev","sm")}</button>`;
   const seg=(act,cur,opts)=>`<div class="seg">${opts.map(([k,lab])=>`<button class="${cur===k?"on":""}" data-act="${act}:${k}">${esc(lab)}</button>`).join("")}</div>`;
-  return `${a.length?`<div class="panel">${a.map(row).join("")}</div>`:emptyCars()}
+  return `${a.length?`<div class="panel">${a.map(row).join("")}</div><div class="btns" style="margin-top:10px"><button class="btn ghost" data-act="addCar">${ic("plus")}${esc(t("addCar"))}</button></div>`:emptyCars()}
   ${ar.length?`<h2 class="sec">${esc(t("archivedCars"))}</h2><div class="panel">${ar.map(row).join("")}</div>`:""}
   <h2 class="sec">${esc(t("settings"))}</h2>
   <div class="panel">
@@ -621,17 +688,106 @@ function knownStations(pos,skipId){
     const k=f.station;if(!best[k]||m<best[k].m||(m-best[k].m<50&&f.date>best[k].date))best[k]={name:k,m,date:f.date,known:true};}
   return Object.values(best).sort((a,b)=>a.m-b.m);
 }
-async function osmNearby(pos,ev){
+async function osmNearby(pos,ev,radius){radius=Math.round(radius||1500);
   try{
     const ctl=new AbortController();const tm=setTimeout(()=>ctl.abort(),8000);
-    const q=`[out:json][timeout:8];nwr(around:1500,${pos.lat},${pos.lng})["amenity"="${ev?"charging_station":"fuel"}"];out center 20;`;
+    const q=`[out:json][timeout:8];nwr(around:${radius},${pos.lat},${pos.lng})["amenity"="${ev?"charging_station":"fuel"}"];out center 60;`;
     const res=await fetch("https://overpass-api.de/api/interpreter",{method:"POST",body:"data="+encodeURIComponent(q),headers:{"Content-Type":"application/x-www-form-urlencoded"},signal:ctl.signal});
     clearTimeout(tm);if(!res.ok)return [];const js=await res.json();
     return (js.elements||[]).map(e=>{const tg=e.tags||{};const lat=e.lat!=null?e.lat:e.center&&e.center.lat,lng=e.lon!=null?e.lon:e.center&&e.center.lon;
       const nm=tg["name:th"]||tg.name||"",br=tg.brand||tg.operator||"";
       const name=(br&&nm&&!nm.toLowerCase().includes(br.toLowerCase())?br+" "+nm:(nm||br)).trim();
-      return name&&lat!=null?{name,m:geoDist(pos,{lat,lng}),known:false}:null;}).filter(Boolean).sort((a,b)=>a.m-b.m);
+      return name&&lat!=null?{name,lat,lng,m:geoDist(pos,{lat,lng}),known:false}:null;}).filter(Boolean).sort((a,b)=>a.m-b.m);
   }catch(e){return [];}
+}
+
+/* ---------- station map ---------- */
+let MAP=null,STATIONS=[],leafletP=null;const LF={map:(...a)=>window.L.map(...a),tileLayer:(...a)=>window.L.tileLayer(...a),marker:(...a)=>window.L.marker(...a),divIcon:(...a)=>window.L.divIcon(...a)};
+function stationList(){
+  const g={};
+  for(const f of S.fuel){if(!f.station)continue;const o=g[f.station]||(g[f.station]={name:f.station,fills:[]});o.fills.push(f);}
+  return Object.values(g).map(o=>{
+    o.fills.sort((a,b)=>b.date.localeCompare(a.date)||b.odo-a.odo);
+    const wc=o.fills.find(f=>f.lat!=null);o.lat=wc?wc.lat:null;o.lng=wc?wc.lng:null;
+    const pr={};for(const f of o.fills)if(!pr[f.fuel])pr[f.fuel]={price:f.price,date:f.date};
+    o.prices=pr;o.last=o.fills[0];o.visits=o.fills.length;
+    o.cars=[...new Set(o.fills.map(f=>(carById(f.carId)||{}).name).filter(Boolean))];
+    return o;}).sort((a,b)=>b.last.date.localeCompare(a.last.date));
+}
+function priceLines(o){return Object.entries(o.prices).map(([k,v])=>`<span class="tag">${esc(fuelName(k))}</span> <b class="num">฿${fmt(v.price,2)}</b><small class="muted"> · ${esc(fdate(v.date,{day:"numeric",month:"short",year:"2-digit"}))}</small>`).join("<br>");}
+function vStations(){
+  STATIONS=stationList();
+  const cards=STATIONS.map((o,i)=>{const p=o.prices[o.last.fuel];
+    return `<button class="entry" data-act="st:${i}"><div class="e-top"><div style="min-width:0"><div class="e-date">${esc(t("lastVisit"))} ${esc(fdate(o.last.date))} · ${esc(t("visits",{n:o.visits}))}</div><div style="font:600 17px var(--body);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(o.name)}</div></div><div class="e-right"><div class="num" style="font:600 18px var(--num)">฿${fmt(p.price,2)}</div><small class="muted">${esc(fuelName(o.last.fuel))}</small></div></div>${o.lat==null?`<div class="e-mid"><span class="tag warn">${esc(t("noCoords"))}</span></div>`:""}</button>`;}).join("");
+  return `<div class="panel mapwrap"><div id="map"></div></div>
+  <div class="chips" style="margin-top:10px"><button class="chip" data-act="mapNear">${ic("fuel","sm")}${esc(t("nearHere"))}</button><button class="chip" data-act="mapMe">${ic("pin","sm")}${esc(t("myLoc"))}</button></div>
+  <p class="hint" id="mapmsg" style="margin:0 4px"></p>
+  <h2 class="sec">${esc(t("myStations"))} (${STATIONS.length})</h2>
+  ${STATIONS.length?`<div class="list">${cards}</div>`:`<div class="panel empty"><p>${esc(t("stNone"))}</p></div>`}`;
+}
+function ensureLeaflet(){
+  if(window.L)return Promise.resolve();
+  if(leafletP)return leafletP;
+  leafletP=new Promise((res,rej)=>{
+    const l=document.createElement("link");l.rel="stylesheet";l.href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css";document.head.appendChild(l);
+    const sc=document.createElement("script");sc.src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js";sc.onload=res;sc.onerror=()=>{leafletP=null;rej();};document.head.appendChild(sc);
+  });
+  return leafletP;
+}
+const mapMsg=m=>{const e=document.getElementById("mapmsg");if(e)e.textContent=m||"";};
+function mountMap(){
+  ensureLeaflet().then(()=>{
+    const el=document.getElementById("map");if(!el||el._leaflet_id)return;
+    if(MAP){try{MAP.remove();}catch(e){}}
+    const m=LF.map(el,{zoomControl:false,attributionControl:true});MAP=m;
+    LF.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"&copy; OpenStreetMap"}).addTo(m);
+    const pts=[];
+    STATIONS.forEach((o,i)=>{if(o.lat==null)return;const p=o.prices[o.last.fuel];pts.push([o.lat,o.lng]);
+      LF.marker([o.lat,o.lng],{icon:LF.divIcon({className:"stpin",html:`<div class="pin mine"><span class="num">฿${fmt(p.price,2)}</span></div>`,iconSize:[0,0]})}).addTo(m)
+       .bindPopup(`<div class="pop"><b>${esc(o.name)}</b><div class="pl">${priceLines(o)}</div><small class="muted">${esc(t("visits",{n:o.visits}))}</small><button class="chip" data-act="st:${i}">${esc(t("manage"))}</button></div>`);});
+    (UI.osm||[]).forEach(drawOsm);
+    if(UI.mapView)m.setView(UI.mapView.c,UI.mapView.z);
+    else if(pts.length>1)m.fitBounds(pts,{padding:[40,40],maxZoom:15});
+    else if(pts.length===1)m.setView(pts[0],14);
+    else m.setView([15.87,100.99],6);
+    m.on("moveend",()=>{UI.mapView={c:m.getCenter(),z:m.getZoom()};});
+    if(UI.me)drawMe();
+  }).catch(e=>{console.error("map",e);mapMsg(t("mapFail"));});
+}
+function drawOsm(o){
+  if(!MAP)return;const mine=STATIONS.some(s=>s.lat!=null&&geoDist(s,o)<120);if(mine)return;
+  LF.marker([o.lat,o.lng],{icon:LF.divIcon({className:"stpin",html:`<div class="pin other"></div>`,iconSize:[0,0]})}).addTo(MAP)
+   .bindPopup(`<div class="pop"><b>${esc(o.name)}</b><small class="muted">${esc(t("neverFilled"))}</small></div>`);
+}
+function drawMe(){if(!MAP||!UI.me)return;LF.marker([UI.me.lat,UI.me.lng],{icon:LF.divIcon({className:"stpin",html:`<div class="pin me"></div>`,iconSize:[0,0]}),interactive:false}).addTo(MAP);}
+async function mapNear(){
+  if(!MAP)return;const c=MAP.getCenter();const r=Math.min(5000,MAP.distance(c,MAP.getBounds().getNorthEast()));
+  mapMsg(t("searching"));
+  const res=await osmNearby({lat:c.lat,lng:c.lng},false,r);
+  UI.osm=res;res.forEach(drawOsm);mapMsg(res.length?t("found",{n:res.length}):t("noNearby"));
+  if(r>=5000&&!res.length)mapMsg(t("zoomIn"));
+}
+function mapMe(){
+  if(!navigator.geolocation){mapMsg(t("locDenied"));return;}
+  mapMsg(t("locating"));
+  navigator.geolocation.getCurrentPosition(p=>{UI.me={lat:p.coords.latitude,lng:p.coords.longitude};mapMsg("");if(MAP){MAP.setView([UI.me.lat,UI.me.lng],14);drawMe();}},()=>mapMsg(t("locDenied")),{enableHighAccuracy:true,timeout:10000,maximumAge:60000});
+}
+function stationSheet(i){
+  const o=STATIONS[i];if(!o)return;if(MAP)MAP.closePopup();
+  openSheet(`${sheetHead(t("stationName"))}
+  <label class="f"><span>${esc(t("stationName"))}</span><input id="st-name" value="${esc(o.name)}"></label>
+  <div class="panel" style="padding:14px 16px;margin-bottom:12px"><div class="pl">${priceLines(o)}</div><p class="hint" style="margin:8px 0 0">${esc(t("visits",{n:o.visits}))} · ${esc(o.cars.join(", "))}</p></div>
+  ${o.lat==null?`<p class="hint" style="margin:0 2px 10px">${esc(t("noCoordsHint"))}</p><div class="btns" style="margin:0 0 12px"><button type="button" class="btn ghost" id="st-pin">${ic("pin")}${esc(t("setCoords"))}</button></div>`:`<div class="btns" style="margin:0 0 12px"><button type="button" class="btn ghost" id="st-show">${ic("pin")}${esc(t("showOnMap"))}</button></div>`}
+  <div class="btns" style="margin-top:0"><button type="button" class="btn danger" id="st-del">${esc(t("delete"))}</button><p class="hint" style="text-align:center;margin:0">${esc(t("stDelWarn",{n:o.visits}))}</p></div>
+  <div class="savebar"><button type="button" class="btn" id="st-save">${esc(t("save"))}</button></div>`,el=>{
+    bindClose(el);const q=id=>el.querySelector("#"+id);
+    q("st-save").onclick=()=>{const nn=q("st-name").value.trim();if(!nn||nn===o.name){closeSheet();return;}
+      S.fuel.forEach(f=>{if(f.station===o.name)f.station=nn;});closeSheet();toast(t("saved"));commit("fuel");};
+    if(q("st-show"))q("st-show").onclick=()=>{closeSheet();UI.mapView={c:{lat:o.lat,lng:o.lng},z:16};if(MAP)MAP.setView([o.lat,o.lng],16);window.scrollTo({top:0,behavior:"smooth"});};
+    if(q("st-pin"))q("st-pin").onclick=()=>{if(!MAP){toast(t("mapFail"));return;}const c=MAP.getCenter();
+      S.fuel.forEach(f=>{if(f.station===o.name&&f.lat==null){f.lat=+c.lat.toFixed(5);f.lng=+c.lng.toFixed(5);}});UI.mapView={c,z:MAP.getZoom()};closeSheet();toast(t("saved"));commit("fuel");};
+    armDelete(q("st-del"),()=>{S.fuel.forEach(f=>{if(f.station===o.name){f.station="";delete f.lat;delete f.lng;}});closeSheet();toast(t("deleted"));commit("fuel");});
+  });
 }
 
 /* ---------- login ---------- */
@@ -695,7 +851,7 @@ function fillForm(f){
   <div class="locrow"><button type="button" class="chip" id="ff-loc">${ic("pin","sm")}${esc(t("locate"))}</button><span class="hint" id="ff-locmsg"></span></div>
   <div class="chips near" id="ff-near"></div>
   <label class="f"><span>${esc(t("note"))}</span><input id="ff-note" value="${esc(f.note||"")}"></label>
-  <div class="savebar"><p class="formerr" id="ff-err" role="alert"></p><button type="button" class="btn" id="ff-save">${esc(t("save"))}</button>${edit?`<button type="button" class="btn danger" id="ff-del">${esc(t("delete"))}</button>`:""}</div>`,el=>{
+  ${edit?`<div class="btns" style="margin-top:6px"><button type="button" class="btn danger" id="ff-del">${esc(t("delete"))}</button></div>`:""}<div class="savebar"><p class="formerr" id="ff-err" role="alert"></p><button type="button" class="btn" id="ff-save">${esc(t("save"))}</button></div>`,el=>{
     bindClose(el);const $=id=>el.querySelector("#"+id);
     const fillFuel=()=>{const c=carById($("ff-car").value);const cur=$("ff-fuel").value||f.fuel;$("ff-fuel").innerHTML=(c.fuels||[]).map(k=>`<option value="${k}" ${k===(c.fuels.includes(cur)?cur:c.primary)?"selected":""}>${esc(fuelName(k))}</option>`).join("");onFuel();};
     const onFuel=()=>{const k=$("ff-fuel").value;{const u=fuelUnit(k),th=L()==="th",ev=k==="ev";$("ff-qlab").textContent=u==="kWh"?"kWh":th?(u==="kg"?"กิโลกรัม":"ลิตร"):(u==="kg"?"kg":"Litres");$("ff-plab").textContent=th?"บาท/"+(u==="kWh"?"kWh":u==="kg"?"กก.":"ลิตร"):"฿/"+u;
@@ -815,9 +971,9 @@ function svcForm(r){
   <div class="row2"><label class="f" id="sf-shopwrap"><span>${esc(t("shopName"))}</span><input id="sf-shop" value="${esc(r.shop||"")}"></label><label class="f n"><span>${esc(t("cost"))} (฿)</span><input id="sf-cost" inputmode="decimal" value="${r.cost||""}"></label></div>
   <label class="f"><span>${esc(t("remindEvery"))}</span></label><div class="row2" style="margin-top:-6px"><label class="f n"><span>${esc(t("everyKm"))}</span><input id="sf-km" inputmode="numeric" value="${r.everyKm||""}"></label><label class="f n"><span>${esc(t("everyMo"))}</span><input id="sf-mo" inputmode="numeric" value="${r.everyMo||""}"></label></div>
   <label class="f"><span>${esc(t("note"))}</span><input id="sf-note" value="${esc(r.note||"")}"></label>
-  <div class="btns"><button class="btn" id="sf-save">${esc(t("save"))}</button>${edit?`<button class="btn danger" id="sf-del">${esc(t("delete"))}</button>`:""}</div>`,el=>{
+  ${edit?`<div class="btns" style="margin-top:6px"><button class="btn danger" id="sf-del">${esc(t("delete"))}</button></div>`:""}<div class="savebar"><button type="button" class="btn" id="sf-save">${esc(t("save"))}</button></div>`,el=>{
     bindClose(el);const $=id=>el.querySelector("#"+id);let by=r.by;
-    const sync=()=>{const k=$("sf-item").value;$("sf-namewrap").style.display=(k==="other"||k==="repair")?"":"none";$("sf-shopwrap").style.visibility=by==="shop"?"visible":"hidden";};
+    const sync=()=>{const k=$("sf-item").value;$("sf-namewrap").style.display=(k==="other"||k==="repair")?"":"none";const sw=$("sf-shopwrap");sw.style.display=by==="shop"?"":"none";sw.parentElement.style.gridTemplateColumns=by==="shop"?"":"1fr";};
     $("sf-item").addEventListener("change",()=>{const k=$("sf-item").value;$("sf-km").value=ITEMS[k].km||"";$("sf-mo").value=ITEMS[k].mo||"";sync();});
     $("sf-by").querySelectorAll("button").forEach(b=>b.onclick=()=>{by=b.dataset.v;$("sf-by").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));sync();});
     sync();
@@ -841,7 +997,7 @@ function carForm(c){
   <label class="f"><span>${esc(t("plate"))}</span><input id="cf-plate" value="${esc(c.plate||"")}"></label>
   <label class="f"><span>${esc(t("fuels"))}</span></label><div class="chips" id="cf-fuels" style="flex-wrap:wrap;margin-top:-6px"></div>
   <label class="f"><span>${esc(t("primary"))}</span></label><div class="chips" id="cf-prim" style="flex-wrap:wrap;margin-top:-6px"></div>
-  <div class="btns"><button class="btn" id="cf-save">${esc(t("save"))}</button>${edit?`<button class="btn ghost" id="cf-arc">${esc(c.archived?t("unarchive"):t("archive"))}</button><button class="btn danger" id="cf-del">${esc(t("delete"))}</button><p class="hint" style="text-align:center;margin:0">${esc(t("deleteCarWarn"))}</p>`:""}</div>`,el=>{
+  ${edit?`<div class="btns" style="margin-top:6px"><button type="button" class="btn ghost" id="cf-arc">${esc(c.archived?t("unarchive"):t("archive"))}</button><button type="button" class="btn danger" id="cf-del">${esc(t("delete"))}</button><p class="hint" style="text-align:center;margin:0">${esc(t("deleteCarWarn"))}</p></div>`:""}<div class="savebar"><button type="button" class="btn" id="cf-save">${esc(t("save"))}</button></div>`,el=>{
     bindClose(el);const $=id=>el.querySelector("#"+id);
     const drawPhoto=()=>{$("cf-th").style.backgroundImage=photo?`url('${photo}')`:"";$("cf-th").textContent=photo?"":"—";$("cf-rm").style.display=photo?"":"none";};
     const drawFuels=()=>{if(!fuels.includes(primary))primary=fuels[0];
@@ -909,11 +1065,15 @@ document.addEventListener("click",e=>{
     case "car":S.settings.activeCar=b;commit("settings");break;
     case "filt":UI.filter=b;render();break;
     case "ffuel":UI.fuelF=b;render();break;
+    case "fview":UI.fuelView=b;render();break;
+    case "mapNear":mapNear();break;
+    case "mapMe":mapMe();break;
+    case "st":stationSheet(+b);break;
     case "scar":UI.sCar=b;render();break;
     case "sper":UI.sPer=b;render();break;
     case "sfuel":UI.sFuel=b;render();break;
     case "cyc":{const car=carById(c);if(!car)break;const order=b==="eff"?Object.keys(EFF):Object.keys(COST);const cur=unitOf(car,d,b);car.units=car.units||{};car.units[d]=Object.assign({},car.units[d],{[b]:order[(order.indexOf(cur)+1)%order.length]});commit("cars");break;}
-    case "add":chooser();break;
+    case "add":if(activeCars().length)chooser();else carForm();break;
     case "addFill":fillForm();break;
     case "addSvc":svcForm();break;
     case "addCar":carForm();break;
@@ -931,6 +1091,10 @@ document.addEventListener("click",e=>{
       else{clearArmed=false;const keep=S.settings;S=defaults();S.settings=Object.assign(keep,{activeCar:null});commit("settings","cars","fuel","service");toast(t("cleared"));}break;
   }
 });
+document.addEventListener("change",e=>{const el=e.target.closest("[data-chg]");if(!el)return;const k=el.dataset.chg,v=el.value;
+  if(k==="car"){S.settings.activeCar=v;commit("settings");return;}
+  if(k==="filt")UI.filter=v;else if(k==="ffuel")UI.fuelF=v;else if(k==="scar")UI.sCar=v;else if(k==="sper")UI.sPer=v;else if(k==="sfuel")UI.sFuel=v;
+  render();});
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{if(S.settings.theme==="auto")render();});
 render();
 })();
