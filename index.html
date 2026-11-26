@@ -348,6 +348,10 @@ svg.i.xs{width:13px;height:13px;vertical-align:-2px}
 .receipt-picker{position:relative;cursor:pointer}
 .receipt-picker input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
 .receipt-picker:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+.receipt-photo{display:block;max-width:100%;max-height:240px;margin:12px auto;object-fit:contain}
+.receipt-photo[hidden]{display:none}
+.receipt-line{padding:10px 12px;margin:8px 0}
+.receipt-line .row2{grid-template-columns:minmax(0,1fr) minmax(90px,.55fr)}
 .mvsum{padding:4px 16px;margin-bottom:12px}
 .mv-row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;font-size:15px}
 .mv-row+.mv-row{border-top:1px solid var(--line)}
@@ -900,7 +904,7 @@ function vService(){
   const ids=filterIds();const sAll=S.service.filter(r=>ids.includes(r.carId));
   const people=personOpts(sAll);if(!people.some(x=>x[0]===UI.byF))UI.byF="all";
   const items=itemOpts(sAll);if(!items.some(x=>x[0]===UI.itemF))UI.itemF="all";
-  const receiptPicker=`<div class="btns"><label class="btn ghost receipt-picker">${ic("upload")}${esc(t("receipt"))}<input type="file" accept=".json,application/json" data-chg="receipt"></label></div>`;
+  const receiptPicker=`<div class="btns"><button type="button" class="btn" data-act="scanReceipt">${ic("image")}${esc(scanText("title"))}</button><label class="btn ghost receipt-picker">${ic("upload")}${esc(t("receipt"))}<input type="file" accept=".json,application/json" data-chg="receipt"></label></div>`;
   const head=filterBar(null,people,items)+receiptPicker;const itF=UI.itemF;
   let rems=ids.flatMap(id=>reminders(id)).sort((a,b)=>a.score-b.score);
   if(itF!=="all")rems=rems.filter(x=>itemKey(x.r)===itF);
@@ -1011,7 +1015,7 @@ function vSettings(){
   <div class="panel"><div class="lrow static"><span class="lic">${ic("info")}</span><span class="ltx">${esc(t("version"))}</span><span class="lv">${APPVER}</span></div>${row("sub:privacy","shield",t("privacy"),null)}</div>
   <p class="hint" style="margin:10px 4px 0;text-align:center">Mind Cars · Mind Apps</p>`;
 }
-const APPVER="1.7.0";
+const APPVER="1.8.0";
 const SUBTITLES=()=>({account:t("account"),language:t("language"),appearance:t("appearance"),units:t("unitsSec"),date:t("dateFmt"),filldef:t("fillDefaults"),cats:t("expCats"),privacy:t("privacy")});
 function vMore(){
   const a=activeCars(),ar=S.cars.filter(c=>c.archived);const st=S.settings;
@@ -1373,7 +1377,7 @@ function parseReceipt(text){
   if(!nonnegative(sum)||sum!==receipt.totalSatang)throw Error("Receipt total mismatch");
   return receipt;
 }
-function receiptSheet(receipt){
+function receiptSheet(receipt,photo=""){
   const prefix="receipt_"+receipt.id+"_";
   const imported=()=>S.service.filter(record=>typeof record.id==="string"&&record.id.startsWith(prefix));
   const pending=()=>{
@@ -1390,6 +1394,7 @@ function receiptSheet(receipt){
     <p>${esc(receipt.shop)} · ${esc(fdate(receipt.date))}${receipt.odo!=null?" · "+fmt(receipt.odo,0)+" "+esc(t("km")):""}</p>
     <label class="f"><span>${esc(t("receiptCar"))}</span><select id="receipt-car">${choices.length>1?`<option value="">—</option>`:""}${options}</select></label>
     <div class="panel mvsum">${preview}<div class="mv-row"><b>${esc(t("receiptTotal"))}</b><b>฿${fmt(receipt.totalSatang/100,2)}</b></div></div>
+    ${photo?`<p class="hint">${esc(scanText("photoSync"))}</p>`:""}
     <div class="savebar"><button type="button" class="btn" id="receipt-save">${esc(t("save"))}</button></div>`,el=>{
     bindClose(el);
     const select=el.querySelector("#receipt-car"),save=el.querySelector("#receipt-save");
@@ -1408,8 +1413,294 @@ function receiptSheet(receipt){
       });
       closeSheet();
       if(!records.length){toast(t("receiptDone"));return;}
+      if(photo)receiptPhotoStore(prefix,"put",photo).catch(()=>toast(scanText("photoFailed")));
       S.service.push(...records);UI.byF="all";UI.itemF="all";UI.sel=car.id;S.settings.activeCar=car.id;
       commit("service","settings");toast(t("imported",{n:records.length}));
+    };
+  });
+}
+
+/* ---------- on-device receipt scan ---------- */
+const SCAN_TEXT={
+  th:{title:"สแกนใบเสร็จ",camera:"ถ่ายรูป",gallery:"เลือกรูป",intro:"อ่านรูปบนเครื่องฟรี ใช้เน็ตเพื่อโหลดตัวอ่านครั้งแรก ใบเขียนมืออาจต้องกรอกเพิ่ม",reading:"กำลังอ่านข้อความ…",manual:"กรอกรายการเอง",review:"ตรวจชื่อร้าน วันที่ รายการ และราคาเทียบกับใบเสร็จก่อนบันทึก",failed:"อ่านรูปไม่ได้ ลองเลือกรูปใหม่ หรือกรอกรายการด้านล่าง",empty:"อ่านรายการไม่ชัด กรอกหรือเพิ่มรายการจากรูปได้เลย",add:"เพิ่มรายการ",remove:"ลบรายการ",description:"รายละเอียดในใบเสร็จ",continue:"ตรวจยอดและเลือกรถ",required:"กรอกชื่อร้าน วันที่ และรายละเอียดกับราคาของแต่ละรายการ",totalRequired:"กรอกยอดสุทธิตามใบเสร็จ",mismatch:"ยอดรายการยังไม่ตรงกับยอดสุทธิ ตรวจส่วนลด ภาษี และราคาแต่ละบรรทัด",photo:"รูปใบเสร็จ",photoUnavailable:"รูปใบเสร็จไม่อยู่บนเครื่องนี้",photoFailed:"บันทึกรายการแล้ว แต่เก็บรูปใบเสร็จบนเครื่องไม่สำเร็จ",photoSync:"เปิดดูรูปใบเสร็จย้อนหลังได้บนเครื่องที่บันทึก",optional:"ถ้ามี",sum:"ยอดรวมรายการ",invalidImage:"เปิดรูปไม่ได้ ลองเลือกรูป JPG หรือ PNG ขนาดไม่เกิน 25 MB"},
+  en:{title:"Scan receipt",camera:"Take photo",gallery:"Choose photo",intro:"Free on-device scanning. Internet is needed to download the reader initially. Handwriting may need manual entry.",reading:"Reading receipt…",manual:"Enter items manually",review:"Check the shop, date, items and prices against the receipt before saving.",failed:"Couldn't read this image. Try another image or enter the items below.",empty:"No clear items found. Enter or add items using the photo.",add:"Add item",remove:"Remove item",description:"Receipt description",continue:"Review total and select car",required:"Enter the shop, date, and a description and price for each item.",totalRequired:"Enter the net total shown on the receipt.",mismatch:"The item sum differs from the net total. Check discounts, taxes, and line prices.",photo:"Receipt photo",photoUnavailable:"The receipt photo is unavailable on this device.",photoFailed:"Items were saved, but the receipt photo could not be stored on this device.",photoSync:"The receipt photo stays available in your history on this device.",optional:"if available",sum:"Item sum",invalidImage:"Couldn't open this image. Try a JPG or PNG up to 25 MB."}
+};
+const scanText=key=>SCAN_TEXT[L()][key];
+
+function receiptDigits(text){
+  return text.replace(/[๐-๙]/g,d=>String(d.charCodeAt(0)-0x0e50));
+}
+function scanMoney(text){
+  const value=receiptDigits(text.trim());
+  if(!/^(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d{1,2})?$/.test(value))return null;
+  const [whole,fraction=""]=value.replace(/,/g,"").split(".");
+  const cents=Number(whole)*100+Number(fraction.padEnd(2,"0"));
+  return Number.isSafeInteger(cents)?cents:null;
+}
+function scanDate(text){
+  const m=text.match(/\b(\d{1,4})\s*[-/.]\s*(\d{1,2})\s*[-/.]\s*(\d{2}|\d{4})\b/);
+  if(!m)return "";
+  const iso=m[1].length===4;
+  const day=Number(iso?m[3]:m[1]),month=Number(m[2]);
+  let year=Number(iso?m[1]:m[3]);
+  if(year>=2400)year-=543;
+  if(year>=1900&&year<=2200&&month>=1&&month<=12&&day>=1&&day<=31){
+    const date=new Date(Date.UTC(year,month-1,day));
+    if(date.getUTCMonth()===month-1)return date.toISOString().slice(0,10);
+  }
+  return "";
+}
+function scanCategory(text){
+  const rules=[
+    ["tireRotation",/สลับยาง|สลับล้อ|ty?re rotation|tire rotation/i],
+    ["oilfilter",/กรองน้ำมันเครื่อง|oil\s*filter/i],
+    ["airfilter",/กรองอากาศ|air\s*filter/i],
+    ["cabin",/กรองแอร์|cabin\s*filter/i],
+    ["brakefluid",/น้ำมันเบร[กค]|brake\s*fluid|dot\s*[34]/i],
+    ["brakepad",/ผ้าเบร[กค]|brake\s*pads?/i],
+    ["coolant",/หม้อน้ำ|coolant|antifreeze/i],
+    ["gearoil",/น้ำมันเกียร์|gear\s*oil|oil\s*gear|\b(?:atf|cvtf)\b/i],
+    ["oil",/น้ำมันเครื่อง|engine\s*oil/i],
+    ["plug",/หัวเทียน|spark\s*plug/i],
+    ["battery",/แบตเตอรี่|battery/i],
+    ["tire",/เปลี่ยนยาง|tyres?|tires?/i]
+  ];
+  return rules.find(([,pattern])=>pattern.test(text))?.[0]||"other";
+}
+function scanReceiptDraft(text){
+  const normalized=receiptDigits(text).normalize("NFC")
+    .replace(/([่้๊๋])\1+/g,"$1").replace(/น้ามัน/g,"น้ำมัน");
+  const lines=normalized.split(/\r?\n/).map(line=>line.trim()).filter(Boolean);
+  const dateLine=lines.find(line=>/(?:วันที่|\bdate\b)/i.test(line)&&scanDate(line));
+  const date=scanDate(dateLine||lines.find(line=>scanDate(line))||"");
+  const odoLine=lines.find(line=>/(?:เลขไมล์|ระยะทาง|\bodometer\b|\bmileage\b)/i.test(line))||"";
+  const odo=odoLine.match(/(?:เลขไมล์|ระยะทาง|\bodometer\b|\bmileage\b)\s*[:.]?\s*([\d,]+)/i)?.[1]?.replace(/,/g,"")||"";
+  const net=/(?:ยอดสุทธิ|รวมสุทธิ|ยอดชำระ|รวมทั้งสิ้น|จำนวนเงินรวม|รวมทั้งหมด|\bgrand\s*total\b|\bnet\s*(?:total|amount)\b|\bamount\s*(?:due|paid)\b|^\s*(?:รวม(?:เงิน)?|total)\s*[:฿\d])/i;
+  const meta=/(?:รวมก่อน|รวมย่อย|ยอดรวม|รวมเงิน|ภาษี|ส่วนลด|เงินทอน|เงินสด|รับเงิน|ชำระ|ใบเสร็จ|ใบกำกับ|เลขที่|เลขไมล์|ระยะทาง|วันที่|ทะเบียน|โทร|ลำดับ|จำนวน|subtotal|sub\s+total|\b(?:vat|discount|change|cash|receipt|invoice|date|odometer|mileage|tax|total|phone|qty)\b)/i;
+  const amountPattern=/(?:^|[\s:฿])(-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d{1,2})?)\s*(?:บาท|฿|THB)?\s*$/i;
+  const namedShop=lines.find(line=>/^(?:ชื่อร้าน|ร้านค้า|shop|garage)\s*:\s*\S/i.test(line));
+  const shop=namedShop?.replace(/^[^:]+:\s*/,"")||lines.slice(0,5).find(line=>
+    /[ก-ฮa-z]/i.test(line)&&!meta.test(line)&&!net.test(line)&&!scanDate(line)&&!amountPattern.test(line)&&
+    !/(?:ที่อยู่|สาขา|ลูกค้า|address|branch|customer)/i.test(line))||"";
+  let total=null;
+  const items=[];
+  for(const line of lines){
+    const match=line.match(amountPattern);
+    if(!match)continue;
+    const amount=scanMoney(match[1]);
+    if(net.test(line)){if(amount!==null)total=amount;continue;}
+    if(amount===null||meta.test(line)||scanDate(line))continue;
+    const description=line.slice(0,match.index).replace(/^\d{1,3}[.)]?\s+/,"").replace(/[\s:฿]+$/,"").trim();
+    if(!/[ก-ฮa-z]/i.test(description))continue;
+    items.push({description,amount,item:scanCategory(description)});
+  }
+  return {shop,date,odo,total,items};
+}
+
+let receiptReaderPromise;
+function loadReceiptReader(){
+  if(window.Tesseract)return Promise.resolve(window.Tesseract);
+  if(!receiptReaderPromise)receiptReaderPromise=new Promise((resolve,reject)=>{
+    const script=document.createElement("script");
+    script.src="https://cdn.jsdelivr.net/npm/tesseract.js@6.0.1/dist/tesseract.min.js";
+    script.integrity="sha384-r1ru3tcf6FhnCFR4B7pIFG+BhFF9LlFtz/P1y4pblWn3AGs9y3lBx5SKLNf4+rED";
+    script.crossOrigin="anonymous";
+    const timer=setTimeout(()=>{script.remove();reject(Error("OCR download timed out"));},25000);
+    script.onload=()=>{clearTimeout(timer);window.Tesseract?resolve(window.Tesseract):reject(Error("OCR unavailable"));};
+    script.onerror=()=>{clearTimeout(timer);script.remove();reject(Error("OCR download failed"));};
+    document.head.appendChild(script);
+  }).catch(error=>{receiptReaderPromise=null;throw error;});
+  return receiptReaderPromise;
+}
+async function readReceiptImage(image){
+  const Tesseract=await loadReceiptReader();
+  let worker;
+  let timer;
+  let expired=false;
+  let rejectWorker;
+  const failure=new Promise((_,reject)=>{rejectWorker=reject;});
+  const read=async()=>{
+    worker=await Tesseract.createWorker(["tha","eng"],1,{errorHandler:error=>rejectWorker(error)});
+    if(expired){await worker.terminate();return "";}
+    await worker.setParameters({tessedit_pageseg_mode:"6",preserve_interword_spaces:"1"});
+    return (await worker.recognize(image)).data.text;
+  };
+  try{
+    return await Promise.race([read(),failure,new Promise((_,reject)=>{
+      timer=setTimeout(()=>{expired=true;reject(Error("OCR timed out"));},90000);
+    })]);
+  }finally{
+    clearTimeout(timer);
+    expired=true;
+    if(worker)await worker.terminate();
+  }
+}
+async function prepareReceiptImage(file){
+  if(file.size>25*1024*1024)throw Error("Image too large");
+  const url=URL.createObjectURL(file);
+  try{
+    const image=new Image();
+    image.src=url;
+    await image.decode();
+    const canvas=document.createElement("canvas"),context=canvas.getContext("2d");
+    const resize=(maximum)=>{
+      const scale=Math.min(1,maximum/Math.max(image.naturalWidth,image.naturalHeight));
+      canvas.width=Math.max(1,Math.round(image.naturalWidth*scale));
+      canvas.height=Math.max(1,Math.round(image.naturalHeight*scale));
+      context.fillStyle="#fff";
+      context.fillRect(0,0,canvas.width,canvas.height);
+      context.drawImage(image,0,0,canvas.width,canvas.height);
+    };
+    resize(2400);
+    const input=await new Promise(resolve=>canvas.toBlob(resolve,"image/png"));
+    resize(1300);
+    let photo=canvas.toDataURL("image/jpeg",0.68);
+    if(photo.length>180000){resize(900);photo=canvas.toDataURL("image/jpeg",0.56);}
+    if(!input||photo.length>300000)throw Error("Image conversion failed");
+    const digest=await crypto.subtle.digest("SHA-256",await file.arrayBuffer());
+    const key=Array.from(new Uint8Array(digest),n=>n.toString(16).padStart(2,"0")).join("");
+    return {input,photo,id:"scan-"+key};
+  }finally{URL.revokeObjectURL(url);}
+}
+const scannedReceiptPrefix=record=>record.id?.match(/^receipt_scan-[a-f0-9]{64}_/)?.[0]||"";
+function receiptPhotoStore(prefix,action,photo){
+  const key=MYID()+":"+prefix;
+  return new Promise((resolve,reject)=>{
+    const request=indexedDB.open("mindcars-receipt-photos",1);
+    request.onupgradeneeded=()=>request.result.createObjectStore("photos");
+    request.onerror=()=>reject(request.error);
+    request.onsuccess=()=>{
+      const database=request.result;
+      const tx=database.transaction("photos",action==="get"?"readonly":"readwrite");
+      const store=tx.objectStore("photos");
+      const op=action==="get"?store.get(key):action==="put"?store.put(photo,key):store.delete(key);
+      tx.oncomplete=()=>{database.close();resolve(op.result);};
+      tx.onabort=()=>{database.close();reject(tx.error);};
+    };
+  });
+}
+
+function scanReceiptSheet(){
+  if(!activeCars().length||(CLOUD&&!READY)){toast(t("receiptWait"));return;}
+  const moneyInput=(value)=>value==null?"":(value/100).toFixed(2);
+  openSheet(`${sheetHead(scanText("title"))}
+    <p class="hint">${esc(scanText("intro"))}</p>
+    <div class="btns">
+      <label class="btn ghost receipt-picker">${ic("image")}${esc(scanText("camera"))}<input type="file" accept="image/*" capture="environment" aria-label="${esc(scanText("camera"))}"></label>
+      <label class="btn ghost receipt-picker">${ic("upload")}${esc(scanText("gallery"))}<input type="file" accept="image/*" aria-label="${esc(scanText("gallery"))}"></label>
+    </div>
+    <img class="receipt-photo" alt="${esc(scanText("photo"))}" hidden>
+    <p class="hint" data-scan-status role="status"></p>
+    <div data-scan-manual hidden><button type="button" class="btn ghost">${esc(scanText("manual"))}</button></div>
+    <form hidden>
+      <label class="f"><span>${esc(t("shopName"))}</span><input name="shop" maxlength="180" required></label>
+      <div class="row2"><label class="f"><span>${esc(t("date"))}</span><input type="date" name="date" required></label>
+      <label class="f"><span>${esc(t("odo"))} (${esc(scanText("optional"))})</span><input name="odo" inputmode="numeric" maxlength="12"></label></div>
+      <div data-scan-lines></div>
+      <button type="button" class="btn ghost" data-scan-add>${ic("plus")}${esc(scanText("add"))}</button>
+      <label class="f"><span>${esc(t("receiptTotal"))} (฿)</span><input name="total" inputmode="decimal" maxlength="16" required></label>
+      <p data-scan-sum></p>
+      <p class="hint" data-scan-error role="alert"></p>
+      <div class="savebar"><button type="submit" class="btn">${esc(scanText("continue"))}</button></div>
+    </form>`,el=>{
+    bindClose(el);
+    const select=selector=>el.querySelector(selector);
+    const form=select("form"),rows=select("[data-scan-lines]"),status=select("[data-scan-status]");
+    const preview=select("img"),error=select("[data-scan-error]"),sum=select("[data-scan-sum]");
+    const pickers=[...el.querySelectorAll('input[type="file"]')];
+    const manual=select("[data-scan-manual]");
+    const field=name=>form.elements.namedItem(name);
+    let prepared=null;
+    const lineData=()=>[...rows.children].map(row=>({
+      description:row.querySelector("input").value.trim(),
+      item:row.querySelector("select").value,
+      amount:scanMoney(row.querySelector('[inputmode="decimal"]').value)
+    }));
+    const updateSum=()=>{
+      const amount=lineData().reduce((total,row)=>total+(row.amount??0),0);
+      sum.textContent=scanText("sum")+" ฿"+fmt(amount/100,2);
+      error.textContent="";
+    };
+    const addLine=({description="",item="other",amount=null}={})=>{
+      const row=document.createElement("div");
+      row.className="panel receipt-line";
+      row.innerHTML=`<label class="f"><span>${esc(scanText("description"))}</span><input maxlength="240" required value="${esc(description)}"></label>
+        <div class="row2"><label class="f"><span>${esc(t("item"))}</span><select>${Object.entries(ITEMS).map(([key,value])=>
+        `<option value="${key}" ${key===item?"selected":""}>${esc(value[L()])}</option>`).join("")}</select></label>
+        <label class="f"><span>${esc(t("cost"))} (฿)</span><input inputmode="decimal" maxlength="16" required value="${moneyInput(amount)}"></label></div>
+        <button class="btn ghost" type="button">${esc(scanText("remove"))}</button>`;
+      row.querySelector("button").onclick=()=>{row.remove();updateSum();};
+      rows.appendChild(row);
+      return row;
+    };
+    select("[data-scan-add]").onclick=()=>addLine().querySelector("input").focus();
+    form.oninput=updateSum;
+    const showDraft=(draft,message)=>{
+      field("shop").value=draft.shop||"";
+      field("date").value=draft.date||"";
+      field("odo").value=draft.odo||"";
+      field("total").value=moneyInput(draft.total);
+      rows.replaceChildren();
+      for(const item of draft.items||[])addLine(item);
+      if(!rows.children.length)addLine();
+      status.textContent=scanText(message);
+      form.hidden=false;
+      updateSum();
+    };
+    manual.querySelector("button").onclick=()=>{
+      manual.hidden=true;
+      showDraft({},"review");
+    };
+    for(const picker of pickers)picker.onchange=async()=>{
+      const file=picker.files[0];
+      picker.value="";
+      if(!file)return;
+      pickers.forEach(input=>{input.disabled=true;});
+      status.textContent=scanText("reading");
+      try{
+        const next=await prepareReceiptImage(file);
+        if(!el.isConnected)return;
+        prepared=next;
+        preview.src=next.photo;
+        preview.hidden=false;
+        form.hidden=true;
+        manual.hidden=false;
+        try{
+          const draft=scanReceiptDraft(await readReceiptImage(next.input));
+          if(el.isConnected&&!manual.hidden)showDraft(draft,draft.items.length?"review":"empty");
+        }catch{
+          if(el.isConnected&&!manual.hidden)showDraft({},"failed");
+        }finally{manual.hidden=true;}
+      }catch{
+        if(el.isConnected)status.textContent=scanText("invalidImage");
+      }finally{
+        pickers.forEach(input=>{input.disabled=false;});
+      }
+    };
+    form.onsubmit=event=>{
+      event.preventDefault();
+      if(!prepared)return;
+      const shop=field("shop").value.trim(),date=field("date").value;
+      const odoText=receiptDigits(field("odo").value.trim()).replace(/,/g,"");
+      const odo=odoText?Number(odoText):null,totalSatang=scanMoney(field("total").value);
+      const data=lineData();
+      if(!shop||!date||odo!==null&&(!/^\d+$/.test(odoText)||!Number.isSafeInteger(odo))||
+        !data.length||data.some(row=>!row.description||row.amount===null)){
+        error.textContent=scanText("required");return;
+      }
+      if(totalSatang===null){error.textContent=scanText("totalRequired");return;}
+      if(data.reduce((total,row)=>total+row.amount,0)!==totalSatang){
+        error.textContent=scanText("mismatch");return;
+      }
+      const items=data.map(({description,item,amount},i)=>({
+        id:String(i+1),item,costSatang:amount,
+        ...(["other","repair"].includes(item)?{name:description}:{note:description})
+      }));
+      try{
+        const receipt=parseReceipt(JSON.stringify({type:"mindcars-service-receipt",version:1,
+          id:prepared.id,shop,date,odo,totalSatang,items}));
+        receiptSheet(receipt,prepared.photo);
+      }catch{error.textContent=scanText("required");}
     };
   });
 }
@@ -1756,8 +2047,17 @@ function svcForm(r){
   <div class="row2"><label class="f" id="sf-shopwrap"><span>${esc(t("shopName"))}</span><input id="sf-shop" value="${esc(r.shop||"")}"></label><label class="f n"><span>${esc(t("cost"))} (฿)</span><input id="sf-cost" inputmode="decimal" value="${r.cost||""}"></label></div>
   <div id="sf-remwrap"><label class="f"><span>${esc(t("remindEvery"))}</span></label><div class="row2" style="margin-top:-6px"><label class="f n"><span>${esc(t("everyKm"))}</span><input id="sf-km" inputmode="numeric" value="${r.everyKm||""}"></label><label class="f n"><span>${esc(t("everyMo"))}</span><input id="sf-mo" inputmode="numeric" value="${r.everyMo||""}"></label></div></div>
   <label class="f"><span>${esc(t("note"))}</span><input id="sf-note" value="${esc(r.note||"")}"></label>
+  ${scannedReceiptPrefix(r)?`<details id="sf-receipt"><summary>${esc(scanText("photo"))}</summary><img class="receipt-photo" alt="${esc(scanText("photo"))}" hidden><p class="hint" hidden>${esc(scanText("photoUnavailable"))}</p></details>`:""}
   ${edit?`<div class="btns" style="margin-top:6px"><button class="btn danger" id="sf-del">${esc(t("delete"))}</button></div>`:""}<div class="savebar"><button type="button" class="btn" id="sf-save">${esc(t("save"))}</button></div>`,el=>{
     bindClose(el);const $=id=>el.querySelector("#"+id);let by=r.by;
+    const attachment=$("sf-receipt");
+    if(attachment)attachment.ontoggle=async()=>{
+      if(!attachment.open)return;
+      const photo=await receiptPhotoStore(scannedReceiptPrefix(r),"get").catch(()=>"");
+      const image=attachment.querySelector("img");
+      if(/^data:image\/jpeg;base64,[a-z0-9+/=]+$/i.test(photo||"")){image.src=photo;image.hidden=false;}
+      else attachment.querySelector("p").hidden=false;
+    };
     const sync=()=>{const k=$("sf-item").value,cat=isCat(k);$("sf-namewrap").style.display=(k==="other"||k==="repair")?"":"none";
       $("sf-bywrap").style.display=cat?"none":"";$("sf-remwrap").style.display=cat?"none":"";
       const showShop=!cat&&by==="shop";const sw=$("sf-shopwrap");sw.style.display=showShop?"":"none";sw.parentElement.style.gridTemplateColumns=showShop?"":"1fr";};
@@ -1771,7 +2071,12 @@ function svcForm(r){
       const rec={id:r.id||nid(),carId:$("sf-car").value,date:$("sf-date").value||todayISO(),item,name:isCat(item)?((catById(item)||{}).name||""):$("sf-name").value.trim(),odo:Math.round(odo),by,shop:by==="shop"?$("sf-shop").value.trim():"",cost:n("sf-cost"),everyKm:Math.round(n("sf-km")),everyMo:Math.round(n("sf-mo")),note:$("sf-note").value.trim()};
       const i=S.service.findIndex(x=>x.id===rec.id);if(i>=0)S.service[i]=rec;else S.service.push(rec);
       closeSheet();toast(t("saved"));commit("service");};
-    if(edit)armDelete($("sf-del"),()=>{S.service=S.service.filter(x=>x.id!==r.id);closeSheet();toast(t("deleted"));commit("service");});
+    if(edit)armDelete($("sf-del"),()=>{
+      S.service=S.service.filter(x=>x.id!==r.id);
+      const prefix=scannedReceiptPrefix(r);
+      if(prefix&&!S.service.some(item=>scannedReceiptPrefix(item)===prefix))receiptPhotoStore(prefix,"delete").catch(()=>{});
+      closeSheet();toast(t("deleted"));commit("service");
+    });
     if(edit&&!canEditRec(r))makeReadonly(el,t("roRec",{n:whoName(r)}));
   });
 }
@@ -1897,6 +2202,7 @@ document.addEventListener("click",e=>{
     case "cat":catSheet(b);break;
     case "share":shareSheet(b,"last");break;
     case "backup":downloadBackup();break;
+    case "scanReceipt":scanReceiptSheet();break;
     case "fuelioOut":fuelioOutSheet();break;
     case "signout":if(CLOUD&&CLOUD.signOut){flush().finally(()=>CLOUD.signOut());}break;
     case "leavelocal":try{localStorage.removeItem(LOCALFLAG);}catch(e){}USER=null;render();break;
